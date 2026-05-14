@@ -1,0 +1,1471 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Idealmobili &amp; Sfera — Restyling identità</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg-soft: #F4F2EE;
+    --ink: #0A0A0A;
+    --ink-2: #2C2C2C;
+    --muted: #8A8A85;
+    --rule: #E5E2DC;
+    --rule-2: #BFBBB2;
+    --clay: #C0492B;       /* primary accent — terracotta/clay */
+    --clay-soft: #E7BFAE;
+    --cobalt: #1F2E66;     /* secondary accent — ink blue */
+    --sand: #E8DFCC;       /* warm secondary */
+    --ochre: #C99A3C;      /* tertiary */
+    --sans: "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --serif: "Instrument Serif", Georgia, serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--clay); color: #fff; }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+  .wrap-full { max-width: 100%; padding: 0; }
+
+  /* ---------- Typography ---------- */
+  h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
+  h1 { font-size: clamp(72px, 10vw, 168px); line-height: 0.88; letter-spacing: -0.04em; font-weight: 500; }
+  h2 { font-size: clamp(40px, 5.5vw, 88px); line-height: 0.95; letter-spacing: -0.03em; font-weight: 500; }
+  h3 { font-size: clamp(24px, 2.8vw, 36px); line-height: 1.05; letter-spacing: -0.02em; }
+  h4 { font-size: 16px; line-height: 1.25; font-weight: 600; letter-spacing: -0.01em; }
+  p { margin: 0 0 1em; color: var(--ink-2); }
+
+  .serif { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .mono { font-family: var(--mono); }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .eyebrow .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--clay);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 20;
+    border-bottom: 1px solid var(--ink);
+    padding: 16px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .masthead .center { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: -0.01em; text-transform: none; }
+  .masthead .center .accent { color: var(--clay); }
+  .masthead .right { text-align: right; }
+  .masthead a { color: var(--ink-2); text-decoration: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 96px 48px 64px;
+    border-bottom: 1px solid var(--ink);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .hero .label {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .hero .label strong { color: var(--ink); font-weight: 500; display: block; margin-top: 4px; font-family: var(--sans); font-size: 13px; text-transform: none; letter-spacing: -0.01em; }
+  .hero h1 .a { color: var(--clay); }
+  .hero h1 .b { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--ink); }
+  .hero h1 .c { color: var(--ink-2); }
+
+  .hero-sub { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; padding-top: 24px; }
+  .hero-sub .big-p { font-size: 28px; line-height: 1.2; color: var(--ink); letter-spacing: -0.02em; font-weight: 400; max-width: 22ch; }
+  .hero-sub .big-p .serif { color: var(--clay); }
+  .hero-sub .toc { font-family: var(--mono); font-size: 12px; letter-spacing: 0.02em; }
+  .hero-sub .toc div { display: grid; grid-template-columns: 32px 1fr auto; padding: 12px 0; border-top: 1px solid var(--rule); color: var(--ink-2); }
+  .hero-sub .toc div:last-child { border-bottom: 1px solid var(--rule); }
+  .hero-sub .toc div .n { color: var(--muted); }
+  .hero-sub .toc div .p { text-transform: uppercase; }
+
+  /* ---------- Section frame ---------- */
+  section { padding: 120px 48px; border-bottom: 1px solid var(--ink); }
+  section.no-pad { padding: 0; border-bottom: 1px solid var(--ink); }
+  section.tinted { background: var(--bg-soft); }
+  section.dark { background: var(--ink); color: #fff; }
+  section.dark p, section.dark .eyebrow, section.dark h4 { color: rgba(255,255,255,0.7); }
+  section.dark h2, section.dark h3 { color: #fff; }
+  section.dark .eyebrow .dot { background: var(--clay); }
+  section.clay { background: var(--clay); color: #fff; }
+  section.clay p, section.clay .eyebrow { color: rgba(255,255,255,0.85); }
+  section.clay h2, section.clay h3 { color: #fff; }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 48px;
+    margin-bottom: 80px;
+    align-items: start;
+  }
+  .section-head .left { position: sticky; top: 80px; }
+  .section-head .sec-num { font-family: var(--mono); font-size: 14px; color: var(--muted); margin-bottom: 24px; letter-spacing: 0.04em; }
+  .section-head .sec-num strong { color: var(--ink); font-weight: 500; }
+  section.dark .section-head .sec-num strong { color: #fff; }
+  section.clay .section-head .sec-num strong { color: #fff; }
+
+  .section-head h2 .accent { color: var(--clay); }
+  .section-head h2 .serif { color: var(--clay); }
+  section.clay .section-head h2 .accent, section.clay .section-head h2 .serif { color: #0A0A0A; }
+  section.dark .section-head h2 .accent { color: var(--clay); }
+
+  .section-head .right p { font-size: 18px; line-height: 1.45; color: var(--ink-2); max-width: 50ch; }
+  section.dark .section-head .right p { color: rgba(255,255,255,0.75); }
+  section.clay .section-head .right p { color: rgba(255,255,255,0.92); }
+
+  /* ============ 1. DIAGNOSI ============ */
+  .diagnostic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .current-logo {
+    background: #C7C7C7;
+    padding: 48px 32px;
+    aspect-ratio: 5 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+    position: relative;
+    border: 1px solid var(--rule);
+  }
+  .current-logo .blob {
+    width: 64px;
+    height: 64px;
+    background:
+      conic-gradient(from 0deg, #6B1818, #C19A6B, #A02020, #4A2A1A, #C19A6B, #6B1818);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    opacity: 0.85;
+    filter: contrast(1.1) saturate(0.9);
+    flex-shrink: 0;
+  }
+  .current-logo .txt {
+    font-family: "Times New Roman", serif;
+    font-weight: 700;
+    font-size: clamp(20px, 3vw, 36px);
+    color: #0A0A0A;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    position: relative;
+  }
+  .current-logo .txt .light { font-weight: 400; }
+  .current-logo .txt::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    right: 35%;
+    bottom: -10px;
+    height: 4px;
+    background: #C0492B;
+  }
+  .current-logo .badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #555;
+    background: rgba(255,255,255,0.5);
+    padding: 4px 8px;
+  }
+
+  .diag-list h3 { margin-bottom: 24px; }
+  .diag-list ul { list-style: none; padding: 0; margin: 0; }
+  .diag-list li { padding: 18px 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 36px 1fr; gap: 16px; }
+  .diag-list li:last-child { border-bottom: 1px solid var(--rule); }
+  .diag-list .x { color: var(--clay); font-family: var(--serif); font-style: italic; font-size: 24px; line-height: 1; }
+  .diag-list h4 { margin-bottom: 4px; font-size: 15px; }
+  .diag-list p { font-size: 13px; margin: 0; color: var(--ink-2); }
+
+  /* ============ 2. BRIEF ============ */
+  .brief-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .brief-card {
+    padding: 48px 36px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .brief-card:last-child { border-right: 0; }
+  .brief-card .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--clay); margin-bottom: 16px; }
+  .brief-card h3 { font-size: 32px; line-height: 1.05; margin-bottom: 16px; color: #fff; font-weight: 500; }
+  .brief-card h3 .serif { color: var(--clay-soft); }
+  .brief-card p { font-size: 14px; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.5; }
+
+  /* ============ 3. LOGO CONCEPTS ============ */
+  .concept {
+    border-bottom: 1px solid var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    min-height: 640px;
+  }
+  .concept:last-child { border-bottom: 0; }
+  .concept .info {
+    padding: 64px 48px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .concept .info .top .num { font-family: var(--mono); font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+  .concept .info .top .num .recommend { color: var(--clay); font-weight: 500; margin-left: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .concept .info .top h3 { font-size: 56px; line-height: 0.95; margin-bottom: 16px; letter-spacing: -0.03em; }
+  .concept .info .top h3 .serif { color: var(--clay); }
+  .concept .info .top .desc { font-size: 16px; line-height: 1.5; color: var(--ink-2); max-width: 38ch; margin-bottom: 24px; }
+  .concept .info .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.02em; }
+  .concept .info .specs div { display: grid; grid-template-rows: auto auto; gap: 2px; border-top: 1px solid var(--rule); padding-top: 8px; }
+  .concept .info .specs div .l { color: var(--muted); text-transform: uppercase; font-size: 10px; }
+  .concept .info .specs div .v { color: var(--ink); font-family: var(--sans); font-size: 13px; letter-spacing: -0.01em; }
+
+  .concept .canvas {
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .concept .canvas .meta {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Concept A — Editorial wordmark with sphere dot */
+  .canvas-a { background: var(--bg-soft); }
+  .logo-a {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 78px;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .logo-a .sep { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--clay); }
+  .logo-a .light { font-weight: 400; color: var(--ink-2); }
+  .logo-a .dot {
+    width: 16px; height: 16px;
+    background: var(--clay);
+    border-radius: 50%;
+    align-self: flex-end;
+    margin-bottom: 12px;
+  }
+
+  /* Concept B — Monogram circle + wordmark */
+  .canvas-b { background: var(--ink); color: #fff; }
+  .logo-b { display: flex; align-items: center; gap: 32px; }
+  .logo-b .mark {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--clay);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 56px;
+    letter-spacing: -0.05em;
+    position: relative;
+  }
+  .logo-b .mark .amp { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 24px; margin: 0 -2px; transform: translateY(-4px); }
+  .logo-b .wm { font-family: var(--sans); color: #fff; font-weight: 500; line-height: 0.95; }
+  .logo-b .wm .row1 { font-size: 38px; letter-spacing: -0.035em; }
+  .logo-b .wm .row2 { font-size: 38px; letter-spacing: -0.035em; }
+  .logo-b .wm .row2 .alt { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--clay-soft); }
+  .logo-b .wm .row3 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 12px; }
+
+  /* Concept C — Architectural stacked */
+  .canvas-c { background: var(--sand); }
+  .logo-c {
+    display: grid;
+    grid-template-columns: auto 1px auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .logo-c .col1, .logo-c .col2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 32px;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .logo-c .col1 { text-align: right; }
+  .logo-c .col2 { text-align: left; }
+  .logo-c .col1 .sub, .logo-c .col2 .sub { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--muted); margin-top: 6px; font-weight: 400; text-transform: uppercase; }
+  .logo-c .bar { background: var(--ink); width: 1px; height: 90px; }
+
+  /* Concept B — RECOMMENDED accent */
+  .concept.recommended .info { background: var(--bg-soft); }
+
+  /* ============ 4. SISTEMA LOGO ============ */
+  .system-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+  .sys-card {
+    grid-column: span 6;
+    background: var(--bg-soft);
+    border: 1px solid var(--rule);
+    padding: 36px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .sys-card.dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .sys-card.clay { background: var(--clay); color: #fff; border-color: var(--clay); }
+  .sys-card.span4 { grid-column: span 4; }
+  .sys-card.span12 { grid-column: span 12; }
+  .sys-card .head { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
+  .sys-card.dark .head, .sys-card.clay .head { color: rgba(255,255,255,0.6); }
+  .sys-card .head .id { color: var(--ink); font-family: var(--sans); }
+  .sys-card.dark .head .id, .sys-card.clay .head .id { color: #fff; }
+  .sys-card .title { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: auto; }
+  .sys-card .demo { display: flex; align-items: center; justify-content: center; padding: 32px 0; flex: 1; }
+
+  /* Mini logos */
+  .logo-primary {
+    display: flex; align-items: center; gap: 18px;
+  }
+  .logo-primary .mark { width: 56px; height: 56px; border-radius: 50%; background: var(--clay); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 500; font-size: 22px; letter-spacing: -0.04em; }
+  .logo-primary .mark .amp { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 11px; transform: translateY(-2px); margin: 0 -1px; }
+  .logo-primary .wm .r1 { font-weight: 500; font-size: 18px; letter-spacing: -0.03em; line-height: 1; }
+  .logo-primary .wm .r2 { font-weight: 500; font-size: 18px; letter-spacing: -0.03em; line-height: 1; }
+  .logo-primary .wm .r2 .alt { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--clay); }
+  .sys-card.dark .logo-primary .wm .r1, .sys-card.dark .logo-primary .wm .r2 { color: #fff; }
+  .sys-card.clay .logo-primary .mark { background: #fff; color: var(--clay); }
+
+  .mono-mark { width: 96px; height: 96px; border-radius: 50%; background: var(--clay); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 500; font-size: 38px; letter-spacing: -0.05em; }
+  .mono-mark .amp { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 18px; transform: translateY(-3px); margin: 0 -2px; }
+
+  .stacked-wm { text-align: center; line-height: 0.95; }
+  .stacked-wm .r1 { font-weight: 500; font-size: 28px; letter-spacing: -0.03em; }
+  .stacked-wm .r2 { font-weight: 500; font-size: 28px; letter-spacing: -0.03em; }
+  .stacked-wm .r2 .alt { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--clay); }
+  .stacked-wm .r3 { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+
+  /* Clear space diagram */
+  .clear-space { position: relative; padding: 40px; }
+  .clear-space-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .clear-space-box {
+    border: 1px dashed var(--rule-2);
+    padding: 32px;
+    position: relative;
+  }
+  .clear-space-box::before, .clear-space-box::after {
+    content: "X";
+    position: absolute;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .clear-space-box::before { top: 6px; left: 6px; }
+  .clear-space-box::after { bottom: 6px; right: 6px; }
+  .clear-space-inner { border: 1px solid var(--ink); padding: 24px; display: flex; align-items: center; justify-content: center; }
+
+  /* Size table */
+  .size-row { display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--rule); align-items: center; }
+  .size-row:first-child { border-top: 1px solid var(--rule); }
+  .size-row .ctx { font-size: 13px; }
+  .size-row .ctx .lab { font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 2px; }
+  .size-row .val { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+
+  /* ============ 5. TYPOGRAPHY ============ */
+  .type-spec { display: grid; grid-template-columns: 220px 1fr; gap: 64px; padding: 64px 0; border-top: 1px solid var(--rule); }
+  .type-spec:last-child { border-bottom: 1px solid var(--rule); }
+  .type-spec .meta { position: sticky; top: 80px; align-self: start; }
+  .type-spec .meta .role { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--clay); margin-bottom: 12px; }
+  .type-spec .meta h4 { font-size: 28px; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 8px; }
+  .type-spec .meta p { font-size: 13px; color: var(--ink-2); line-height: 1.45; }
+  .type-spec .meta .weights { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule); }
+
+  .type-spec .sample .big { font-weight: 500; letter-spacing: -0.04em; line-height: 0.95; }
+  .type-spec.serif-spec .sample .big { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
+  .type-spec.mono-spec .sample .big { font-family: var(--mono); font-weight: 400; letter-spacing: 0; }
+  .type-spec .sample .big.s100 { font-size: clamp(80px, 10vw, 144px); }
+  .type-spec .sample .big.s60 { font-size: 60px; }
+  .type-spec .sample .scale { display: grid; grid-template-columns: 60px 1fr; gap: 16px 24px; margin-top: 32px; align-items: baseline; }
+  .type-spec .sample .scale .n { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .type-spec .sample .scale .t { line-height: 1; }
+  .type-spec.serif-spec .sample .scale .t { font-family: var(--serif); font-style: italic; }
+  .type-spec.mono-spec .sample .scale .t { font-family: var(--mono); }
+
+  /* ============ 6. COLORS ============ */
+  .palette-strip { display: grid; grid-template-columns: 2.4fr 1fr 1fr 1fr 1fr 1fr; height: 320px; }
+  .swatch { padding: 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; cursor: default; }
+  .swatch .name { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+  .swatch .hex { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; }
+  .swatch .role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; }
+  .swatch.light { color: var(--ink); }
+  .swatch.dark { color: #fff; }
+  .swatch .role.dark-on-light { color: var(--ink-2); }
+  .swatch .role.light-on-dark { color: rgba(255,255,255,0.7); }
+  .pal-ink { background: var(--ink); }
+  .pal-clay { background: var(--clay); }
+  .pal-cobalt { background: var(--cobalt); }
+  .pal-sand { background: var(--sand); }
+  .pal-ochre { background: var(--ochre); }
+  .pal-white { background: var(--bg); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+
+  .color-usage { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 64px; }
+  .usage-card { border: 1px solid var(--rule); padding: 28px; }
+  .usage-card h4 { font-size: 14px; margin-bottom: 12px; }
+  .usage-card .bar { display: grid; grid-template-columns: 60% 25% 8% 4% 3%; height: 32px; margin-bottom: 16px; }
+  .usage-card .bar div { display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 9px; color: rgba(255,255,255,0.8); }
+  .usage-card .bar .pct-light { color: var(--ink); }
+  .usage-card p { font-size: 13px; margin: 0; color: var(--muted); }
+
+  /* ============ 7. APPLICATIONS ============ */
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+  .app { background: var(--bg-soft); border: 1px solid var(--rule); position: relative; overflow: hidden; }
+  .app .tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.85);
+    padding: 4px 8px;
+    color: var(--ink);
+    backdrop-filter: blur(4px);
+    z-index: 2;
+  }
+
+  /* Business card */
+  .app-card { grid-column: span 6; aspect-ratio: 16 / 9; padding: 32px; display: flex; align-items: center; justify-content: center; }
+  .biz-cards { display: flex; gap: 16px; transform: rotate(-2deg); }
+  .biz-card {
+    width: 240px;
+    height: 140px;
+    background: #fff;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    border-radius: 1px;
+  }
+  .biz-card.back { background: var(--clay); transform: translate(8px, 14px) rotate(4deg); }
+  .biz-card .small-logo { display: flex; align-items: center; gap: 8px; }
+  .biz-card .small-logo .m { width: 22px; height: 22px; border-radius: 50%; background: var(--clay); color: #fff; font-size: 9px; font-weight: 500; display: flex; align-items: center; justify-content: center; letter-spacing: -0.04em; }
+  .biz-card .small-logo .w { font-size: 11px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.05; }
+  .biz-card .small-logo .w .alt { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--clay); }
+  .biz-card .info { font-family: var(--mono); font-size: 8px; line-height: 1.45; color: var(--ink-2); letter-spacing: 0.02em; }
+  .biz-card .info strong { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); display: block; margin-bottom: 4px; }
+  .biz-card.back .info-back { text-align: right; color: #fff; }
+  .biz-card.back .big { font-family: var(--serif); font-style: italic; font-size: 36px; line-height: 1; color: #fff; }
+  .biz-card.back .lbl { font-family: var(--mono); font-size: 9px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+
+  /* Signage */
+  .app-sign { grid-column: span 6; aspect-ratio: 16 / 9; padding: 0; display: flex; align-items: stretch; justify-content: stretch; background: #DDD7CD; position: relative; }
+  .sign-mock {
+    flex: 1;
+    background: linear-gradient(180deg, #C9C2B5 0%, #B8B0A1 100%);
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .sign-mock::before {
+    content: "";
+    position: absolute;
+    inset: 24px;
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  .sign-panel {
+    background: var(--ink);
+    color: #fff;
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    transform: perspective(800px) rotateY(-4deg);
+  }
+  .sign-panel .mark { width: 80px; height: 80px; border-radius: 50%; background: var(--clay); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 500; letter-spacing: -0.05em; }
+  .sign-panel .mark .amp { font-family: var(--serif); font-style: italic; font-size: 16px; font-weight: 400; transform: translateY(-3px); margin: 0 -1px; }
+  .sign-panel .wm .r1 { font-size: 26px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; color: #fff; }
+  .sign-panel .wm .r2 { font-size: 26px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; color: #fff; }
+  .sign-panel .wm .r2 .alt { font-family: var(--serif); font-style: italic; color: var(--clay); font-weight: 400; }
+  .sign-panel .wm .r3 { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 8px; }
+
+  /* Tote / packaging */
+  .app-tote { grid-column: span 4; aspect-ratio: 4 / 5; padding: 32px; display: flex; align-items: center; justify-content: center; background: var(--sand); }
+  .tote { width: 220px; height: 260px; background: var(--bg-soft); position: relative; padding: 40px 20px; box-shadow: 0 12px 36px rgba(0,0,0,0.12); }
+  .tote::before, .tote::after {
+    content: ""; position: absolute; top: -18px; width: 12px; height: 60px;
+    border: 2px solid var(--ink); border-bottom: 0; border-radius: 60px 60px 0 0;
+    background: transparent;
+  }
+  .tote::before { left: 40px; }
+  .tote::after { right: 40px; }
+  .tote .ts { text-align: center; }
+  .tote .ts .big { font-family: var(--serif); font-style: italic; font-size: 42px; line-height: 1; color: var(--ink); }
+  .tote .ts .small { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
+
+  /* Social post */
+  .app-social { grid-column: span 4; aspect-ratio: 4 / 5; padding: 24px; background: var(--clay); display: flex; align-items: center; justify-content: center; }
+  .social-card {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 4 / 5;
+    background: var(--bg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .social-card .top-lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--clay); }
+  .social-card .quote { font-family: var(--serif); font-style: italic; font-size: 32px; line-height: 1.05; color: var(--ink); letter-spacing: -0.02em; }
+  .social-card .quote .a { color: var(--clay); }
+  .social-card .bottom { display: flex; justify-content: space-between; align-items: flex-end; font-family: var(--mono); font-size: 9px; letter-spacing: 0.04em; color: var(--muted); text-transform: uppercase; }
+  .social-card .bottom .mini-logo { display: flex; align-items: center; gap: 6px; }
+  .social-card .bottom .mini-logo .m { width: 16px; height: 16px; border-radius: 50%; background: var(--clay); }
+
+  /* Web hero mockup */
+  .app-web { grid-column: span 12; aspect-ratio: 16 / 9; padding: 0; background: var(--ink); position: relative; overflow: hidden; }
+  .web-frame { width: 100%; height: 100%; display: flex; flex-direction: column; background: var(--bg); }
+  .web-nav {
+    display: flex; align-items: center; gap: 32px;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--sans); font-size: 13px; letter-spacing: -0.01em;
+    background: var(--bg);
+  }
+  .web-nav .logo { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+  .web-nav .logo .m { width: 28px; height: 28px; border-radius: 50%; background: var(--clay); color: #fff; font-size: 11px; font-weight: 500; display: flex; align-items: center; justify-content: center; letter-spacing: -0.04em; }
+  .web-nav .logo .m .amp { font-family: var(--serif); font-style: italic; font-size: 7px; font-weight: 400; transform: translateY(-1px); margin: 0; }
+  .web-nav .logo .w { font-size: 13px; font-weight: 500; letter-spacing: -0.02em; line-height: 1; }
+  .web-nav .nav { display: flex; gap: 24px; color: var(--ink-2); }
+  .web-nav .nav span { cursor: default; }
+  .web-nav .cta { background: var(--ink); color: #fff; padding: 8px 16px; font-size: 12px; font-weight: 500; letter-spacing: -0.01em; }
+  .web-hero {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    background: var(--bg);
+  }
+  .web-hero .left {
+    padding: 56px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .web-hero .left .eyebrow-w { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--clay); margin-bottom: 24px; }
+  .web-hero .left h2 { font-size: 64px; line-height: 0.9; letter-spacing: -0.04em; margin-bottom: 24px; }
+  .web-hero .left h2 .alt { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--clay); }
+  .web-hero .left .sub { font-size: 14px; line-height: 1.5; color: var(--ink-2); max-width: 36ch; margin-bottom: 24px; }
+  .web-hero .left .ctas { display: flex; gap: 12px; }
+  .web-hero .left .ctas .btn1 { background: var(--ink); color: #fff; padding: 12px 22px; font-size: 13px; font-weight: 500; letter-spacing: -0.01em; }
+  .web-hero .left .ctas .btn2 { background: transparent; color: var(--ink); padding: 12px 22px; font-size: 13px; font-weight: 500; letter-spacing: -0.01em; border: 1px solid var(--ink); }
+  .web-hero .right {
+    background: repeating-linear-gradient(135deg, var(--sand) 0 14px, #E1D8C2 14px 28px);
+    border-left: 1px solid var(--rule);
+    position: relative;
+  }
+  .web-hero .right::after {
+    content: "ambiente · foto";
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .web-hero .right .panel {
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
+    background: var(--clay);
+    color: #fff;
+    padding: 20px 24px;
+    max-width: 240px;
+  }
+  .web-hero .right .panel .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px; }
+  .web-hero .right .panel .t { font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.1; }
+
+  /* ============ 8. WEB DIRECTION ============ */
+  .web-blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+  .web-block { background: var(--bg-soft); border: 1px solid var(--rule); padding: 32px; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; }
+  .web-block .ti { font-family: var(--mono); font-size: 11px; color: var(--clay); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 12px; }
+  .web-block h3 { font-size: 24px; margin-bottom: 12px; }
+  .web-block p { font-size: 14px; line-height: 1.5; color: var(--ink-2); margin: 0; }
+
+  /* ============ CLOSING ============ */
+  .closing {
+    padding: 120px 48px;
+    background: var(--clay);
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .closing h2 { font-size: clamp(48px, 7vw, 112px); line-height: 0.9; letter-spacing: -0.04em; color: #fff; }
+  .closing h2 .alt { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .closing .meta { font-family: var(--mono); font-size: 12px; line-height: 2; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.85); }
+  .closing .meta strong { color: #fff; font-weight: 500; }
+  .closing .meta div { border-top: 1px solid rgba(255,255,255,0.25); padding: 10px 0; display: grid; grid-template-columns: 120px 1fr; }
+
+  /* ---------- Tweak: monogram shape ---------- */
+  body[data-mono="sphere"] .logo-b .mark,
+  body[data-mono="sphere"] .logo-primary .mark,
+  body[data-mono="sphere"] .mono-mark,
+  body[data-mono="sphere"] .sign-panel .mark,
+  body[data-mono="sphere"] .biz-card .small-logo .m,
+  body[data-mono="sphere"] .web-nav .logo .m,
+  body[data-mono="sphere"] .social-card .bottom .mini-logo .m { border-radius: 50%; }
+
+  body[data-mono="soft"] .logo-b .mark { border-radius: 30px; }
+  body[data-mono="soft"] .logo-primary .mark { border-radius: 14px; }
+  body[data-mono="soft"] .mono-mark { border-radius: 22px; }
+  body[data-mono="soft"] .sign-panel .mark { border-radius: 18px; }
+  body[data-mono="soft"] .biz-card .small-logo .m { border-radius: 6px; }
+  body[data-mono="soft"] .web-nav .logo .m { border-radius: 7px; }
+  body[data-mono="soft"] .social-card .bottom .mini-logo .m { border-radius: 4px; }
+
+  body[data-mono="square"] .logo-b .mark,
+  body[data-mono="square"] .logo-primary .mark,
+  body[data-mono="square"] .mono-mark,
+  body[data-mono="square"] .sign-panel .mark,
+  body[data-mono="square"] .biz-card .small-logo .m,
+  body[data-mono="square"] .web-nav .logo .m,
+  body[data-mono="square"] .social-card .bottom .mini-logo .m { border-radius: 0; }
+
+  /* When square is selected, hide the ampersand+letters style and switch to a clean monogram */
+  body[data-mono="square"] .mono-mark,
+  body[data-mono="square"] .logo-b .mark { letter-spacing: -0.06em; }
+
+  /* ---------- Tweak: type pairing weight nudges ---------- */
+  /* Classico (serif-led) wants a slightly more open headline weight */
+  body[data-type="classic"] h1,
+  body[data-type="classic"] h2,
+  body[data-type="classic"] h3 { font-weight: 500; letter-spacing: -0.025em; }
+  body[data-type="classic"] .logo-b .mark .amp,
+  body[data-type="classic"] .logo-primary .mark .amp,
+  body[data-type="classic"] .mono-mark .amp,
+  body[data-type="classic"] .sign-panel .mark .amp { font-weight: 500; }
+  body[data-type="functional"] h1,
+  body[data-type="functional"] h2,
+  body[data-type="functional"] h3 { letter-spacing: -0.03em; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 24px; }
+    .hero, section, .closing { padding-left: 24px; padding-right: 24px; }
+    .masthead { padding: 14px 24px; }
+    .hero-sub, .section-head, .diagnostic, .system-grid, .type-spec, .color-usage, .web-blocks { grid-template-columns: 1fr !important; gap: 32px; }
+    .concept { grid-template-columns: 1fr; }
+    .concept .info { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .brief-grid { grid-template-columns: 1fr; }
+    .palette-strip { grid-template-columns: 1fr 1fr; height: auto; }
+    .palette-strip .swatch { min-height: 140px; }
+    .apps-grid { grid-template-columns: 1fr; }
+    .app-card, .app-sign, .app-tote, .app-social, .app-web, .sys-card, .sys-card.span4 { grid-column: span 1; }
+    .hero .label { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ MASTHEAD ============ -->
+<div class="masthead">
+  <div class="left"><span class="eyebrow"><span class="dot"></span>Documento riservato · v.01</span></div>
+  <div class="center">Idealmobili <span class="serif accent">&amp;</span> Sfera <span class="serif">—</span> Restyling identità</div>
+  <div class="right">Maggio 2026</div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="label">
+    <div>Cliente <strong>Idealmobili &amp; Sfera Design</strong></div>
+    <div>Disciplina <strong>Brand identity · Logo · Web</strong></div>
+    <div>Ispirazione <strong>Lago, design italiano contemporaneo</strong></div>
+    <div>Output <strong>Restyling + sistema applicato</strong></div>
+  </div>
+
+  <h1>
+    Tornare<br>
+    <span class="b">moderni,</span><br>
+    <span class="a">senza dimenticare</span><br>
+    <span class="c">il legno.</span>
+  </h1>
+
+  <div class="hero-sub">
+    <div class="big-p">
+      Cinquant'anni di mestiere meritano <span class="serif">un'identità altrettanto sicura.</span>
+      Un sistema visivo coerente, contemporaneo, con la stessa eleganza
+      misurata di chi cura ogni dettaglio del progetto.
+    </div>
+    <div class="toc">
+      <div><span class="n">01</span><span class="p">Diagnosi del marchio attuale</span><span class="n">→</span></div>
+      <div><span class="n">02</span><span class="p">Brief strategico</span><span class="n">→</span></div>
+      <div><span class="n">03</span><span class="p">Tre concept di logo</span><span class="n">→</span></div>
+      <div><span class="n">04</span><span class="p">Sistema logo raccomandato</span><span class="n">→</span></div>
+      <div><span class="n">05</span><span class="p">Tipografia</span><span class="n">→</span></div>
+      <div><span class="n">06</span><span class="p">Palette colori</span><span class="n">→</span></div>
+      <div><span class="n">07</span><span class="p">Applicazioni</span><span class="n">→</span></div>
+      <div><span class="n">08</span><span class="p">Direzione web "Lago-affine"</span><span class="n">→</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1. DIAGNOSTIC ============ -->
+<section>
+  <div class="section-head">
+    <div class="left">
+      <div class="sec-num"><strong>01.</strong> Diagnosi</div>
+      <h2>Il marchio<br>oggi.</h2>
+    </div>
+    <div class="right">
+      <p>Un punto onesto di partenza. Il logo attuale racconta correttamente il nome dell'azienda, ma non comunica nulla del livello di servizio, della cura artigianale o della fascia in cui l'azienda si colloca. Lavora contro l'identità che si è costruita nel tempo.</p>
+    </div>
+  </div>
+
+  <div class="diagnostic">
+    <div>
+      <div class="current-logo">
+        <div class="blob"></div>
+        <div class="txt">IDEALMOBILI &amp; SFERA <span class="light">Design</span></div>
+        <div class="badge">Logo attuale · capture</div>
+      </div>
+      <div class="mono" style="font-size: 11px; color: var(--muted); margin-top: 16px; text-transform: uppercase; letter-spacing: 0.06em;">Ricostruzione dal materiale fornito.</div>
+    </div>
+
+    <div class="diag-list">
+      <h3>Cosa non funziona.</h3>
+      <ul>
+        <li><span class="x">i.</span><div><h4>Pittogramma a collage fotografico.</h4><p>Quasi illeggibile a dimensioni piccole, evoca un'estetica anni '90, mescola elementi senza criterio. Lavora contro la promessa "design".</p></div></li>
+        <li><span class="x">ii.</span><div><h4>Serif chunky generico.</h4><p>Un Times bold compresso. Comunica "vecchio mobilificio" più che "interior design contemporaneo".</p></div></li>
+        <li><span class="x">iii.</span><div><h4>Gerarchia tipografica incoerente.</h4><p>"IDEALMOBILI &amp; SFERA" tutto bold, "Design" in regular minuscolo: la parola chiave del posizionamento è graficamente la più debole.</p></div></li>
+        <li><span class="x">iv.</span><div><h4>Sottolineatura rossa decorativa.</h4><p>Non è ancorata a nessun sistema. Sembra un'aggiunta in CorelDRAW per "dare un tocco di colore".</p></div></li>
+        <li><span class="x">v.</span><div><h4>Nessun simbolo riusabile.</h4><p>Non esiste un monogramma, una versione corta, una versione mobile. Su social, favicon, ricamo divisa, vetrofania, il logo non funziona.</p></div></li>
+        <li><span class="x">vi.</span><div><h4>Sfondo grigio non neutro.</h4><p>Suggerisce un PDF stampato di vent'anni fa. Un marchio in salute si presenta su bianco o su tinte di marca.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. STRATEGIC BRIEF ============ -->
+<section class="dark no-pad">
+  <div style="padding: 120px 48px 64px;">
+    <div class="section-head">
+      <div class="left">
+        <div class="sec-num"><strong>02.</strong> Brief</div>
+        <h2>Cosa deve dire<br><span class="serif">la nuova identità.</span></h2>
+      </div>
+      <div class="right">
+        <p>Tre tensioni da bilanciare. Il nuovo marchio non deve essere un puro esercizio "moderno": deve portare avanti la storia, non cancellarla. Lago è il riferimento estetico, ma Idealmobili &amp; Sfera ha qualcosa che Lago non ha — cinquant'anni di lavoro reale nelle case del Salento.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="brief-grid">
+    <div class="brief-card">
+      <div>
+        <div class="lbl">Tensione 01</div>
+        <h3>Contemporaneo, <span class="serif">non di moda.</span></h3>
+      </div>
+      <p>Tipografia pulita, geometrie semplici, eleganza italiana misurata. Niente effetti di stile che invecchieranno in tre anni. Un'identità che reggerà altri vent'anni di showroom.</p>
+    </div>
+    <div class="brief-card">
+      <div>
+        <div class="lbl">Tensione 02</div>
+        <h3>Caldo, <span class="serif">non freddo.</span></h3>
+      </div>
+      <p>Il bianco totale di Lago funziona per Lago. Qui serve calore: tinte terre, accenti materici, fotografia con luce. Si vende casa, non un divano isolato su fondo bianco.</p>
+    </div>
+    <div class="brief-card">
+      <div>
+        <div class="lbl">Tensione 03</div>
+        <h3>Sistema, <span class="serif">non logo.</span></h3>
+      </div>
+      <p>Un singolo logotipo non basta. Servono monogramma, versione orizzontale, versione stacked, versione su fondo scuro, favicon. Una grammatica, non un'icona.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. LOGO CONCEPTS ============ -->
+<section class="no-pad">
+  <div style="padding: 120px 48px 80px;">
+    <div class="section-head">
+      <div class="left">
+        <div class="sec-num"><strong>03.</strong> Concept</div>
+        <h2>Tre direzioni<br>per il marchio.</h2>
+      </div>
+      <div class="right">
+        <p>Tre logiche diverse di costruzione del logo. Tutte e tre rispettano la lunghezza importante del nome ("Idealmobili &amp; Sfera Design" è ingombrante) e propongono soluzioni per gestirla con eleganza.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Concept A -->
+  <div class="concept">
+    <div class="info">
+      <div class="top">
+        <div class="num">Concept A — Editoriale</div>
+        <h3>Wordmark <span class="serif">+ sfera.</span></h3>
+        <div class="desc">Un solo logotipo orizzontale, una sola sfera come unico segno grafico — riferimento sottile al "Sfera" del nome. Massima eleganza, minima invadenza.</div>
+      </div>
+      <div class="specs">
+        <div><span class="l">Costruzione</span><span class="v">Wordmark</span></div>
+        <div><span class="l">Simbolo</span><span class="v">Punto/sfera</span></div>
+        <div><span class="l">Carattere</span><span class="v">Sans + serif italic</span></div>
+        <div><span class="l">Tono</span><span class="v">Editoriale</span></div>
+      </div>
+    </div>
+    <div class="canvas canvas-a">
+      <span class="meta">Concept A · 1:1</span>
+      <div class="logo-a">
+        Idealmobili <span class="sep">&amp;</span> <span class="light">Sfera Design</span><span class="dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Concept B — RECOMMENDED -->
+  <div class="concept recommended">
+    <div class="info">
+      <div class="top">
+        <div class="num">Concept B <span class="recommend">— consigliato</span></div>
+        <h3>Monogramma <span class="serif">sferico.</span></h3>
+        <div class="desc">Un cerchio pieno con "I&amp;S" diventa il marchio breve, riusabile ovunque (favicon, social, ricamo, vetrofania). Affiancato al wordmark completo per le applicazioni principali. È l'unico concept che produce <em>sia</em> un logo lungo eloquente <em>sia</em> un'icona corta forte.</div>
+      </div>
+      <div class="specs">
+        <div><span class="l">Costruzione</span><span class="v">Mark + wordmark</span></div>
+        <div><span class="l">Simbolo</span><span class="v">Monogramma in sfera</span></div>
+        <div><span class="l">Carattere</span><span class="v">Space Grotesk + Instrument Serif</span></div>
+        <div><span class="l">Tono</span><span class="v">Moderno, caldo, sistemico</span></div>
+      </div>
+    </div>
+    <div class="canvas canvas-b">
+      <span class="meta" style="color: rgba(255,255,255,0.5);">Concept B · 1:1 — su fondo scuro</span>
+      <div class="logo-b">
+        <div class="mark">I<span class="amp">&amp;</span>S</div>
+        <div class="wm">
+          <div class="row1">Idealmobili</div>
+          <div class="row2"><span class="alt">&amp;</span> Sfera</div>
+          <div class="row3">Design — dal 1972</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Concept C -->
+  <div class="concept">
+    <div class="info">
+      <div class="top">
+        <div class="num">Concept C — Architettonico</div>
+        <h3>Due nomi, <span class="serif">una linea.</span></h3>
+        <div class="desc">Tutto-tipografico. Due colonne separate da una linea verticale netta, le due ragioni sociali in dialogo. Molto pulito, molto "architettura". Rischio: non produce un'icona, sopra la palmare diventa difficile da usare.</div>
+      </div>
+      <div class="specs">
+        <div><span class="l">Costruzione</span><span class="v">Doppio wordmark</span></div>
+        <div><span class="l">Simbolo</span><span class="v">Nessuno (asta)</span></div>
+        <div><span class="l">Carattere</span><span class="v">Space Grotesk uppercase</span></div>
+        <div><span class="l">Tono</span><span class="v">Architettonico, rigoroso</span></div>
+      </div>
+    </div>
+    <div class="canvas canvas-c">
+      <span class="meta">Concept C · 1:1</span>
+      <div class="logo-c">
+        <div class="col1">Idealmobili<span class="sub">est. 1972</span></div>
+        <div class="bar"></div>
+        <div class="col2">Sfera<span class="sub">design</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. LOGO SYSTEM (recommended = B) ============ -->
+<section class="tinted">
+  <div class="section-head">
+    <div class="left">
+      <div class="sec-num"><strong>04.</strong> Sistema</div>
+      <h2>Il sistema<br>raccomandato.</h2>
+    </div>
+    <div class="right">
+      <p>Tutte le varianti del Concept B, pronte all'uso. Un solo set di file copre dalla insegna di tre metri alla favicon di 16 pixel, dal ricamo sulla divisa al watermark fotografico.</p>
+    </div>
+  </div>
+
+  <div class="system-grid">
+
+    <div class="sys-card">
+      <div class="head"><span class="id">Lockup primario</span><span>1A</span></div>
+      <div class="demo"><div class="logo-primary">
+        <div class="mark">I<span class="amp">&amp;</span>S</div>
+        <div class="wm">
+          <div class="r1">Idealmobili</div>
+          <div class="r2"><span class="alt">&amp;</span> Sfera</div>
+        </div>
+      </div></div>
+      <div class="eyebrow">Uso principale · sito web, signage, stampa istituzionale</div>
+    </div>
+
+    <div class="sys-card dark">
+      <div class="head"><span class="id">Lockup negativo</span><span>1B</span></div>
+      <div class="demo"><div class="logo-primary">
+        <div class="mark" style="background: #fff; color: var(--clay);">I<span class="amp">&amp;</span>S</div>
+        <div class="wm">
+          <div class="r1" style="color: #fff;">Idealmobili</div>
+          <div class="r2" style="color: #fff;"><span class="alt" style="color: var(--clay-soft);">&amp;</span> Sfera</div>
+        </div>
+      </div></div>
+      <div class="eyebrow">Su fondi scuri · fotografia · packaging</div>
+    </div>
+
+    <div class="sys-card span4">
+      <div class="head"><span class="id">Monogramma</span><span>2A</span></div>
+      <div class="demo"><div class="mono-mark">I<span class="amp">&amp;</span>S</div></div>
+      <div class="eyebrow">Avatar social · favicon · ricamo · timbri</div>
+    </div>
+
+    <div class="sys-card span4">
+      <div class="head"><span class="id">Lockup verticale</span><span>2B</span></div>
+      <div class="demo"><div class="stacked-wm">
+        <div class="r1">Idealmobili</div>
+        <div class="r2"><span class="alt">&amp;</span> Sfera</div>
+        <div class="r3">Design · dal 1972</div>
+      </div></div>
+      <div class="eyebrow">Formati quadrati · cartellini · totebag</div>
+    </div>
+
+    <div class="sys-card span4 clay">
+      <div class="head"><span class="id">Versione mono colore</span><span>2C</span></div>
+      <div class="demo"><div class="logo-primary">
+        <div class="mark" style="background: #fff; color: var(--clay);">I<span class="amp">&amp;</span>S</div>
+        <div class="wm">
+          <div class="r1" style="color: #fff;">Idealmobili</div>
+          <div class="r2" style="color: #fff;"><span class="alt" style="color: #fff; font-style: italic;">&amp;</span> Sfera</div>
+        </div>
+      </div></div>
+      <div class="eyebrow" style="color: rgba(255,255,255,0.8);">Per stampa a un colore · timbri · serigrafie</div>
+    </div>
+
+    <div class="sys-card span12">
+      <div class="head"><span class="id">Dimensioni minime di applicazione</span><span>3</span></div>
+      <div style="margin-top: 20px;">
+        <div class="size-row"><div class="ctx">Lockup primario orizzontale<span class="lab">Web + stampa</span></div><div class="val">min. 200 px / 60 mm</div></div>
+        <div class="size-row"><div class="ctx">Lockup verticale<span class="lab">Cartellini, totebag</span></div><div class="val">min. 160 px / 50 mm</div></div>
+        <div class="size-row"><div class="ctx">Monogramma<span class="lab">Avatar, favicon</span></div><div class="val">min. 32 px / 12 mm</div></div>
+        <div class="size-row"><div class="ctx">Spazio di rispetto<span class="lab">Tutti i lockup</span></div><div class="val">= altezza del monogramma</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 5. TYPOGRAPHY ============ -->
+<section>
+  <div class="section-head">
+    <div class="left">
+      <div class="sec-num"><strong>05.</strong> Tipografia</div>
+      <h2>Due voci.<br><span class="serif">Un dialogo.</span></h2>
+    </div>
+    <div class="right">
+      <p>Un sans-serif geometrico moderno per titoli, sotto-titoli e interfaccia. Un serif corsivo editoriale per accenti, ampersand, frasi-manifesto. Una mono per dati e didascalie. La voce di un brand contemporaneo che sa anche fermarsi e raccontare.</p>
+    </div>
+  </div>
+
+  <div class="type-spec">
+    <div class="meta">
+      <div class="role">Primario</div>
+      <h4>Space Grotesk</h4>
+      <p>Geometrico, neutro, contemporaneo. Si comporta bene su titoli giganti e in interfaccia. Sostituisce il Times bold del logo attuale.</p>
+      <div class="weights">Light 300 · Regular 400 · Medium 500 · Bold 700</div>
+    </div>
+    <div class="sample">
+      <div class="big s100">Casa è un<br>progetto.</div>
+      <div class="scale">
+        <div class="n">96</div><div class="t" style="font-size:96px;">Cucine</div>
+        <div class="n">56</div><div class="t" style="font-size:56px;">Showroom Lecce</div>
+        <div class="n">28</div><div class="t" style="font-size:28px;">Progettazione su misura per la zona notte</div>
+        <div class="n">16</div><div class="t" style="font-size:16px;">Corpo testo standard del sito e dei materiali stampa. Dimensione di default per la navigazione e i moduli di contatto.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="type-spec serif-spec">
+    <div class="meta">
+      <div class="role">Accento</div>
+      <h4>Instrument Serif</h4>
+      <p>Esclusivamente italic. Usato per ampersand, una parola-chiave per titolo, citazioni. Rappresenta la "mano umana" all'interno di un sistema altrimenti molto geometrico.</p>
+      <div class="weights">Italic 400 (esclusivo)</div>
+    </div>
+    <div class="sample">
+      <div class="big s100">&amp; Sfera<br>Design.</div>
+      <div class="scale">
+        <div class="n">72</div><div class="t" style="font-size:72px;">Dal 1972</div>
+        <div class="n">40</div><div class="t" style="font-size:40px;">"La casa è un progetto."</div>
+        <div class="n">24</div><div class="t" style="font-size:24px;">Accento editoriale per citazioni e didascalie speciali.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="type-spec mono-spec">
+    <div class="meta">
+      <div class="role">Funzionale</div>
+      <h4>JetBrains Mono</h4>
+      <p>Per dati, microcopy, didascalie, numerazioni di sezione, codici colore, indirizzi. Aggiunge precisione tecnica e moderna al sistema.</p>
+      <div class="weights">Regular 400 · Medium 500</div>
+    </div>
+    <div class="sample">
+      <div class="big s60">EST. 1972 — 04 / 08</div>
+      <div class="scale">
+        <div class="n">14</div><div class="t" style="font-size:14px;">Via San Pietro 12 / Lecce — 73100</div>
+        <div class="n">11</div><div class="t" style="font-size:11px;">PROGETTO 042 · CUCINA SU MISURA · 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. COLOR ============ -->
+<section class="tinted">
+  <div class="section-head">
+    <div class="left">
+      <div class="sec-num"><strong>06.</strong> Colore</div>
+      <h2>Una palette<br><span class="serif">italiana.</span></h2>
+    </div>
+    <div class="right">
+      <p>Terra di Siena come colore primario distintivo — caldo, italiano, di mestiere. Inchiostro nero per autorità e contrasto, sabbia per atmosfera, blu cobalto e ocra come secondari. Scelta volutamente lontana dal blu Lago: si lavora con Lago, non si è una sua estensione.</p>
+    </div>
+  </div>
+
+  <div class="palette-strip">
+    <div class="swatch pal-clay dark">
+      <div><span class="role light-on-dark">Primario · 60%</span></div>
+      <div>
+        <div class="name">Terra Idealmobili</div>
+        <div class="hex">#C0492B · OKLCH 55% 0.13 35</div>
+      </div>
+    </div>
+    <div class="swatch pal-ink dark">
+      <div><span class="role light-on-dark">Inchiostro · 25%</span></div>
+      <div>
+        <div class="name">Inchiostro</div>
+        <div class="hex">#0A0A0A</div>
+      </div>
+    </div>
+    <div class="swatch pal-white light">
+      <div><span class="role dark-on-light">Carta · 10%</span></div>
+      <div>
+        <div class="name">Bianco caldo</div>
+        <div class="hex">#FFFFFF</div>
+      </div>
+    </div>
+    <div class="swatch pal-sand light">
+      <div><span class="role dark-on-light">Atmosfera</span></div>
+      <div>
+        <div class="name">Sabbia</div>
+        <div class="hex">#E8DFCC</div>
+      </div>
+    </div>
+    <div class="swatch pal-cobalt dark">
+      <div><span class="role light-on-dark">Secondario</span></div>
+      <div>
+        <div class="name">Cobalto</div>
+        <div class="hex">#1F2E66</div>
+      </div>
+    </div>
+    <div class="swatch pal-ochre dark">
+      <div><span class="role light-on-dark">Terziario</span></div>
+      <div>
+        <div class="name">Ocra</div>
+        <div class="hex">#C99A3C</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="color-usage">
+    <div class="usage-card">
+      <h4>Distribuzione consigliata</h4>
+      <div class="bar">
+        <div style="background: var(--bg);" class="pct-light">60%</div>
+        <div style="background: var(--ink);">25%</div>
+        <div style="background: var(--clay);">8%</div>
+        <div style="background: var(--sand);" class="pct-light">4%</div>
+        <div style="background: var(--cobalt);">3%</div>
+      </div>
+      <p>Bianco e nero dominano. Terra è l'accento riconoscibile — usato con misura, mai come fondo di intere pagine, eccetto sezioni-chiave.</p>
+    </div>
+    <div class="usage-card">
+      <h4>Coppie di contrasto ammesse</h4>
+      <div class="bar">
+        <div style="background: var(--ink); color: #fff;">Aa</div>
+        <div style="background: var(--clay); color: #fff;">Aa</div>
+        <div style="background: var(--sand); color: var(--ink);" class="pct-light">Aa</div>
+        <div style="background: var(--cobalt); color: #fff;">Aa</div>
+        <div style="background: var(--ochre); color: var(--ink);" class="pct-light">Aa</div>
+      </div>
+      <p>Nero su bianco, bianco su terra, inchiostro su sabbia, bianco su cobalto. Tutte verificate per accessibilità AA.</p>
+    </div>
+    <div class="usage-card">
+      <h4>Da evitare</h4>
+      <div class="bar" style="height: 32px;">
+        <div style="background: var(--clay); color: var(--cobalt);">×</div>
+        <div style="background: var(--ochre); color: var(--clay);">×</div>
+        <div style="background: var(--sand); color: var(--ochre);">×</div>
+        <div style="background: var(--cobalt); color: var(--clay);">×</div>
+        <div style="background: var(--clay); color: var(--ochre);">×</div>
+      </div>
+      <p>Mai accostare terra e cobalto in primo piano. Mai ocra su sabbia. Niente gradienti tra accenti caldi: producono effetto "stampa promozionale".</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. APPLICATIONS ============ -->
+<section>
+  <div class="section-head">
+    <div class="left">
+      <div class="sec-num"><strong>07.</strong> Applicazioni</div>
+      <h2>Il sistema<br>nel mondo.</h2>
+    </div>
+    <div class="right">
+      <p>Otto applicazioni reali. Per ognuna è chiaro come il sistema si comporta: insegna, biglietto, totebag dello showroom, post Instagram, hero del sito. Stessa grammatica, contesti diversi.</p>
+    </div>
+  </div>
+
+  <div class="apps-grid">
+
+    <div class="app app-card">
+      <span class="tag">Biglietti da visita · fronte/retro</span>
+      <div class="biz-cards">
+        <div class="biz-card back">
+          <div class="info-back">
+            <div class="big">&amp;</div>
+            <div class="lbl">Idealmobili · Sfera</div>
+          </div>
+        </div>
+        <div class="biz-card">
+          <div class="small-logo">
+            <div class="m">I<span class="amp">&amp;</span>S</div>
+            <div class="w">Idealmobili<br><span class="alt">&amp;</span> Sfera</div>
+          </div>
+          <div class="info">
+            <strong>Antonio Rossi</strong>
+            Consulente progettazione<br>
+            +39 0832 000 000<br>
+            antonio@idealsfera.it
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app app-sign">
+      <span class="tag">Insegna showroom</span>
+      <div class="sign-mock">
+        <div class="sign-panel">
+          <div class="mark">I<span class="amp">&amp;</span>S</div>
+          <div class="wm">
+            <div class="r1">Idealmobili</div>
+            <div class="r2"><span class="alt">&amp;</span> Sfera</div>
+            <div class="r3">Design — dal 1972</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app app-tote">
+      <span class="tag">Shopping bag · showroom</span>
+      <div class="tote">
+        <div class="ts">
+          <div class="big">&amp;</div>
+          <div class="small">Idealmobili &amp; Sfera<br>Lecce — Salento</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app app-social">
+      <span class="tag" style="background: rgba(255,255,255,0.92);">Post Instagram</span>
+      <div class="social-card">
+        <div class="top-lbl">Progetto 042 — Lecce</div>
+        <div class="quote">"Volevamo <span class="a">una cucina che durasse</span> quanto la casa."</div>
+        <div class="bottom">
+          <div class="mini-logo"><span class="m"></span><span>I&amp;S · idealsfera.it</span></div>
+          <span>05/2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="app app-web">
+      <span class="tag">Sito web · home hero</span>
+      <div class="web-frame">
+        <div class="web-nav">
+          <div class="logo">
+            <div class="m">I<span class="amp">&amp;</span>S</div>
+            <div class="w">Idealmobili<br><span style="font-family: var(--serif); font-style: italic; color: var(--clay); font-weight: 400;">&amp;</span> Sfera</div>
+          </div>
+          <div class="nav"><span>Ambienti</span><span>Progetti</span><span>Showroom</span><span>Servizi</span><span>Contatti</span></div>
+          <div class="cta">Prenota appuntamento</div>
+        </div>
+        <div class="web-hero">
+          <div class="left">
+            <div class="eyebrow-w">Showroom Lecce · Casarano</div>
+            <h2>La casa<br>è un <span class="alt">progetto.</span></h2>
+            <p class="sub">Cinquant'anni di mestiere nel disegno degli interni del Salento. Dalla cucina su misura alla zona notte, accompagniamo ogni progetto fino alla consegna.</p>
+            <div class="ctas">
+              <div class="btn1">Prenota una visita →</div>
+              <div class="btn2">Esplora gli ambienti</div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="panel">
+              <div class="l">Progetto in evidenza</div>
+              <div class="t">Casa M.C. — Lecce, 2024.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 8. WEB DIRECTION ============ -->
+<section class="tinted">
+  <div class="section-head">
+    <div class="left">
+      <div class="sec-num"><strong>08.</strong> Web</div>
+      <h2>Direzione<br><span class="serif">"Lago-affine".</span></h2>
+    </div>
+    <div class="right">
+      <p>Si aggiunge alle 3 direzioni del documento strategico precedente come <strong>quarta opzione</strong>, ed è quella che meglio si allinea al gusto del proprietario. Eredita la logica di Lago — tipografia bold, blocchi pieni di colore, fotografia generosa — ma con un'anima più calda e territoriale.</p>
+    </div>
+  </div>
+
+  <div class="web-blocks">
+    <div class="web-block">
+      <div class="ti">Layout</div>
+      <h3>Griglia editoriale ampia.</h3>
+      <p>Sezioni a tutta pagina, alternanza tra bianco caldo, sabbia, terra e inchiostro. Niente container ristretti. Lo spazio respira.</p>
+    </div>
+    <div class="web-block">
+      <div class="ti">Tipografia</div>
+      <h3>Titoli giganti, body misurato.</h3>
+      <p>Headline tra 96 e 160 px. Corpo testo 16–18 px. La gerarchia è netta: si capisce dove guardare in mezzo secondo.</p>
+    </div>
+    <div class="web-block">
+      <div class="ti">Colore</div>
+      <h3>Blocchi pieni, non gradienti.</h3>
+      <p>Ogni sezione ha un fondo deciso. Niente sfumature, niente decorazioni: il colore è strutturale, non ornamentale.</p>
+    </div>
+    <div class="web-block">
+      <div class="ti">Fotografia</div>
+      <h3>Ambienti vissuti, luce naturale.</h3>
+      <p>Le case reali sono il vero contenuto. Foto grandi, calde, con persone solo quando autorizzate. Niente render.</p>
+    </div>
+    <div class="web-block">
+      <div class="ti">Interazione</div>
+      <h3>Lenta, fluida, mai chiassosa.</h3>
+      <p>Transizioni morbide tra sezioni, hover semplici, niente parallax aggressivi né auto-carousel in home. La calma è premium.</p>
+    </div>
+    <div class="web-block">
+      <div class="ti">Identità</div>
+      <h3>Sistema, non template.</h3>
+      <p>Logo, colori, tipografia, dimensioni di rispetto, microcopy: tutto coerente da home a 404. Si vede al primo scroll che è un brand reale.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+    <div style="background: var(--ink); color: #fff; padding: 48px;">
+      <div class="eyebrow" style="color: var(--clay-soft); margin-bottom: 24px;"><span class="dot"></span>Cosa ereditiamo da Lago</div>
+      <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.6;">
+        <li style="padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85);">→ Tipografia molto grande, voce sicura</li>
+        <li style="padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85);">→ Layout a griglia ampia, sezioni decise</li>
+        <li style="padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85);">→ Blocchi pieni di colore, niente gradienti</li>
+        <li style="padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85);">→ Fotografia editoriale come protagonista</li>
+        <li style="padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.15); border-bottom: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85);">→ Interfaccia minimale, chiara</li>
+      </ul>
+    </div>
+    <div style="background: var(--clay); color: #fff; padding: 48px;">
+      <div class="eyebrow" style="color: rgba(255,255,255,0.7); margin-bottom: 24px;"><span class="dot" style="background: #fff;"></span>Cosa cambiamo per essere noi</div>
+      <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.6;">
+        <li style="padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.92);">→ Terra al posto del blu — calore, non freddezza</li>
+        <li style="padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.92);">→ Serif italic come voce di mestiere</li>
+        <li style="padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.92);">→ Racconto delle case reali, non dei prodotti</li>
+        <li style="padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.92);">→ Storicità (1972) come pilastro narrativo</li>
+        <li style="padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.25); border-bottom: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.92);">→ Showroom fisico al centro, non come dettaglio</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<div class="closing">
+  <h2>Restare<br>un mestiere.<br><span class="alt">Sembrarne uno.</span></h2>
+  <div class="meta">
+    <div><span>Documento</span><span>Restyling identità v.01</span></div>
+    <div><span>Concept consigliato</span><span><strong>02. Monogramma sferico</strong></span></div>
+    <div><span>Direzione web</span><span><strong>04. Lago-affine, anima calda</strong></span></div>
+    <div><span>Prossimo passo</span><span><strong>Validazione con i titolari</strong></span></div>
+    <div><span>Tempi indicativi</span><span>3 settimane per finalizzare il sistema</span></div>
+  </div>
+</div>
+
+<div id="tweaks-root"></div>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "palette": [
+      "#C0492B",
+      "#0A0A0A",
+      "#E7BFAE"
+    ],
+    "type": "modern",
+    "mono": "sphere"
+  }/*EDITMODE-END*/;
+
+  const TYPE_PAIRINGS = {
+    modern: {
+      sans: '"Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif',
+      serif: '"Instrument Serif", Georgia, serif',
+    },
+    classic: {
+      sans: '"Work Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+      serif: '"Cormorant Garamond", Georgia, serif',
+    },
+    functional: {
+      sans: '"IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+      serif: '"IBM Plex Serif", Georgia, serif',
+    },
+  };
+
+  function App() {
+    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+    React.useEffect(() => {
+      const root = document.documentElement;
+      // Palette: primary accent + soft tint. Ink stays constant.
+      if (Array.isArray(t.palette)) {
+        const [primary, , soft] = t.palette;
+        root.style.setProperty('--clay', primary);
+        root.style.setProperty('--clay-soft', soft);
+      }
+      // Type pairing
+      const pair = TYPE_PAIRINGS[t.type] || TYPE_PAIRINGS.modern;
+      root.style.setProperty('--sans', pair.sans);
+      root.style.setProperty('--serif', pair.serif);
+      document.body.setAttribute('data-type', t.type);
+      // Mono shape
+      document.body.setAttribute('data-mono', t.mono);
+    }, [t]);
+
+    return (
+      <TweaksPanel>
+        <TweakSection label="Palette di marca">
+          <TweakColor label="Accento" value={t.palette}
+                      options={[
+                        ["#C0492B", "#0A0A0A", "#E7BFAE"],
+                        ["#1F4FA8", "#0A0A0A", "#BFD0EE"],
+                        ["#5D7050", "#0A0A0A", "#C5D2BC"],
+                        ["#B58435", "#0A0A0A", "#E5D2A3"],
+                      ]}
+                      onChange={(v) => setTweak('palette', v)} />
+        </TweakSection>
+        <TweakSection label="Tipografia">
+          <TweakRadio label="Coppia" value={t.type}
+                      options={[
+                        {value: 'modern', label: 'Moderno'},
+                        {value: 'classic', label: 'Classico'},
+                        {value: 'functional', label: 'Tecnico'},
+                      ]}
+                      onChange={(v) => setTweak('type', v)} />
+        </TweakSection>
+        <TweakSection label="Marchio">
+          <TweakRadio label="Forma" value={t.mono}
+                      options={[
+                        {value: 'sphere', label: 'Sfera'},
+                        {value: 'soft', label: 'Cuscino'},
+                        {value: 'square', label: 'Spigolo'},
+                      ]}
+                      onChange={(v) => setTweak('mono', v)} />
+        </TweakSection>
+      </TweaksPanel>
+    );
+  }
+
+  const rootEl = document.getElementById('tweaks-root');
+  ReactDOM.createRoot(rootEl).render(<App />);
+</script>
+
+</body>
+</html>

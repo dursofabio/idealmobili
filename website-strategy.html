@@ -1,0 +1,1512 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Idealmobili &amp; Sfera Design — Piano strategico nuovo sito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EFE6;
+    --bg-2: #ECE5D8;
+    --paper: #FBF7EF;
+    --ink: #1F1B16;
+    --ink-2: #3A332B;
+    --muted: #6B5F50;
+    --rule: #C9BFAC;
+    --rule-2: #A89A82;
+    --walnut: #4A2F1E;
+    --terra: #B5563A;
+    --sage: #6B7A5A;
+    --gold: #9B7A3A;
+    --serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+    --sans: "Work Sans", Helvetica, "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--ink); }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: var(--walnut); color: var(--paper); }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 64px 56px 96px;
+  }
+
+  /* ---------- Typography ---------- */
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; color: var(--ink); letter-spacing: -0.005em; margin: 0; }
+  h1 { font-size: clamp(56px, 7.4vw, 104px); line-height: 0.95; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(34px, 4vw, 52px); line-height: 1.02; letter-spacing: -0.01em; }
+  h3 { font-size: 26px; line-height: 1.15; }
+  h4 { font-size: 19px; line-height: 1.2; font-weight: 600; }
+  p { margin: 0 0 1em; color: var(--ink-2); }
+  p.lede { font-family: var(--serif); font-size: 26px; line-height: 1.35; color: var(--ink); font-weight: 400; max-width: 36ch; }
+  p.lede em { color: var(--walnut); }
+  .em-serif { font-family: var(--serif); font-style: italic; color: var(--walnut); font-weight: 500; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .num {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--walnut);
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  a { color: var(--walnut); text-decoration: none; border-bottom: 1px solid var(--rule-2); }
+
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+  .rule-thick { border-top: 2px solid var(--ink); margin: 0; }
+
+  /* ---------- Masthead ---------- */
+  .masthead {
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 14px 0;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .masthead .left { text-align: left; }
+  .masthead .center { font-family: var(--serif); font-style: italic; text-transform: none; font-size: 16px; letter-spacing: 0; color: var(--walnut); }
+  .masthead .right { text-align: right; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 72px 0 56px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero h1 .alt { font-style: italic; color: var(--walnut); font-weight: 400; }
+  .hero h1 .amp { font-style: italic; font-weight: 400; color: var(--terra); }
+  .hero .meta {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.8;
+    min-width: 200px;
+  }
+  .hero .meta strong { color: var(--ink); font-weight: 500; }
+
+  .hero-sub {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    padding: 40px 0 8px;
+  }
+  .hero-sub .credit {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 2;
+  }
+  .hero-sub .credit div { display: grid; grid-template-columns: 110px 1fr; border-top: 1px solid var(--rule); padding: 8px 0; }
+  .hero-sub .credit div:last-child { border-bottom: 1px solid var(--rule); }
+  .hero-sub .credit span:last-child { color: var(--ink); font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 14px; }
+
+  /* ---------- Section frame ---------- */
+  section {
+    padding: 88px 0 12px;
+    border-top: 1px solid var(--rule);
+    margin-top: 32px;
+  }
+  section:first-of-type { border-top: none; margin-top: 0; }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    gap: 32px;
+    align-items: baseline;
+    margin-bottom: 56px;
+  }
+  .section-head .idx {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--terra);
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .section-head .idx::before { content: "§ "; color: var(--muted); font-style: normal; font-family: var(--mono); font-size: 14px; }
+  .section-head h2 { padding-right: 20px; }
+  .section-head .kicker {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  /* ---------- Generic layout ---------- */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .col-aside { display: grid; grid-template-columns: 280px 1fr; gap: 56px; }
+  @media (max-width: 880px) {
+    .page { padding: 32px 24px 64px; }
+    .grid-2, .grid-3, .grid-4, .col-aside, .section-head { grid-template-columns: 1fr; gap: 24px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-sub { grid-template-columns: 1fr; gap: 24px; }
+    .hero .meta { text-align: left; }
+  }
+
+  /* ---------- 1. Posizionamento ---------- */
+  .vp-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 40px 36px;
+  }
+  .vp-card .eyebrow { display: block; margin-bottom: 16px; }
+  .vp-card p { font-family: var(--serif); font-size: 24px; line-height: 1.35; color: var(--ink); margin: 0; }
+  .vp-card p .accent { color: var(--terra); font-style: italic; }
+
+  .key-msgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--ink); margin-top: 24px; }
+  .key-msgs .msg { padding: 24px 24px 28px; border-right: 1px solid var(--rule); }
+  .key-msgs .msg:last-child { border-right: 0; }
+  .key-msgs .msg .num { display: block; margin-bottom: 12px; }
+  .key-msgs .msg h4 { margin-bottom: 8px; }
+  .key-msgs .msg p { font-size: 14px; color: var(--ink-2); margin: 0; line-height: 1.5; }
+
+  .tone-table { width: 100%; border-collapse: collapse; }
+  .tone-table th, .tone-table td { text-align: left; padding: 14px 18px; vertical-align: top; border-bottom: 1px solid var(--rule); font-size: 14px; }
+  .tone-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--ink); }
+  .tone-table .si { color: var(--sage); font-weight: 600; }
+  .tone-table .no { color: var(--terra); font-weight: 600; }
+  .tone-table td.example { font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 16px; }
+
+  .diff-list { list-style: none; padding: 0; margin: 0; }
+  .diff-list li { display: grid; grid-template-columns: 32px 1fr; gap: 16px; padding: 18px 0; border-top: 1px solid var(--rule); }
+  .diff-list li:last-child { border-bottom: 1px solid var(--rule); }
+  .diff-list .n { font-family: var(--serif); font-style: italic; color: var(--terra); font-size: 22px; line-height: 1; padding-top: 2px; }
+  .diff-list h4 { margin-bottom: 4px; }
+  .diff-list p { font-size: 14px; margin: 0; }
+
+  /* ---------- 2. Direzione creativa ---------- */
+  .direction {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 0;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+  }
+  .direction .swatch-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 92px;
+  }
+  .direction .swatch-row > div { position: relative; }
+  .direction .swatch-row > div::after {
+    content: attr(data-c);
+    position: absolute;
+    bottom: 6px;
+    left: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+  }
+  .direction .swatch-row > div.light::after { color: rgba(31,27,22,0.6); }
+  .direction .body { padding: 28px 28px 24px; }
+  .direction .name { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 6px; }
+  .direction h3 { margin-bottom: 14px; }
+  .direction .atm { font-family: var(--serif); font-size: 17px; line-height: 1.4; color: var(--ink-2); margin-bottom: 22px; }
+  .direction dl { margin: 0; }
+  .direction dl > div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); font-size: 13px; }
+  .direction dt { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .direction dd { margin: 0; color: var(--ink-2); }
+  .direction .rec {
+    margin: 0;
+    padding: 16px 28px;
+    border-top: 1px solid var(--rule);
+    background: var(--bg-2);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .direction.recommended .rec { background: var(--walnut); color: var(--paper); }
+  .direction.recommended .rec .badge { color: #E8C68B; }
+  .direction .rec .badge { color: var(--walnut); }
+  .direction-recnote {
+    background: var(--walnut);
+    color: var(--paper);
+    padding: 32px 36px;
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .direction-recnote .eyebrow { color: #E8C68B; }
+  .direction-recnote p { color: var(--paper); font-family: var(--serif); font-size: 20px; line-height: 1.45; margin: 0; }
+  .direction-recnote p strong { color: #E8C68B; font-weight: 500; font-style: italic; }
+
+  /* ---------- 3. Sitemap ---------- */
+  .sitemap-tree {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 32px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 2;
+    color: var(--ink-2);
+    margin-bottom: 32px;
+    overflow-x: auto;
+  }
+  .sitemap-tree .root { color: var(--terra); font-weight: 500; }
+  .sitemap-tree .lvl1 { color: var(--ink); font-weight: 500; }
+  .sitemap-tree .lvl2 { color: var(--muted); }
+  .sitemap-tree .note { color: var(--rule-2); font-style: italic; }
+
+  .page-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .page-table th { text-align: left; padding: 14px 12px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--ink); vertical-align: bottom; }
+  .page-table td { padding: 18px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  .page-table td:first-child { padding-left: 0; }
+  .page-table .pname { font-family: var(--serif); font-size: 19px; color: var(--ink); font-weight: 500; line-height: 1.2; }
+  .page-table .pname .sub { display: block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; color: var(--muted); margin-top: 4px; text-transform: uppercase; font-weight: 500; }
+  .page-table .cta { font-family: var(--serif); font-style: italic; color: var(--walnut); }
+  .prio { display: inline-grid; grid-template-columns: auto auto; gap: 4px 8px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .prio .lbl { color: var(--muted); }
+  .prio .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 4px; }
+  .prio .v { color: var(--ink); }
+  .dot-high { background: var(--terra); }
+  .dot-med { background: var(--gold); }
+  .dot-low { background: var(--rule-2); }
+
+  /* ---------- 4. Homepage ---------- */
+  .hp-section {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .hp-section:last-child { border-bottom: 1px solid var(--rule); }
+  .hp-section .id { font-family: var(--serif); font-style: italic; color: var(--terra); font-size: 28px; line-height: 1; }
+  .hp-section .id .sub { display: block; font-family: var(--mono); font-style: normal; font-size: 9px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; margin-top: 6px; }
+  .hp-section h3 { font-size: 24px; margin-bottom: 6px; }
+  .hp-section .func { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .hp-section .visual {
+    background: repeating-linear-gradient(135deg, var(--bg-2) 0 8px, var(--paper) 8px 16px);
+    border: 1px solid var(--rule);
+    padding: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hp-section .visual .lbl { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; }
+  .hp-section .visual .descr { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--ink-2); line-height: 1.35; }
+  .hp-section ul { padding-left: 18px; margin: 0 0 14px; font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+  .hp-section .cta { font-family: var(--serif); font-style: italic; color: var(--walnut); font-size: 15px; }
+  .hp-section .cta::before { content: "→ "; font-style: normal; }
+
+  /* ---------- 5. Checklist materiali ---------- */
+  .checklist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 56px; }
+  .check-block { border-top: 1px solid var(--ink); padding-top: 18px; }
+  .check-block h4 { margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; }
+  .check-block h4 .count { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--muted); font-weight: 500; text-transform: uppercase; }
+  .check-list { list-style: none; padding: 0; margin: 0; }
+  .check-list li {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.4;
+  }
+  .check-list li::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--rule-2);
+    background: var(--paper);
+    margin-top: 3px;
+  }
+  .check-list .priority { color: var(--terra); font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; margin-left: 6px; }
+
+  /* ---------- 6. UX ---------- */
+  .ux-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid var(--ink); }
+  .ux-card { padding: 28px 28px 32px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .ux-card:nth-child(2n) { border-right: 0; }
+  .ux-card .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terra); margin-bottom: 8px; }
+  .ux-card h3 { margin-bottom: 14px; }
+  .ux-card p { font-size: 14px; margin: 0 0 12px; }
+  .ux-card ul { padding-left: 18px; margin: 0; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+
+  .menu-mock {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 24px 28px;
+    margin: 24px 0 8px;
+    font-family: var(--sans);
+    font-size: 13px;
+  }
+  .menu-mock .top { display: flex; gap: 28px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); font-family: var(--serif); font-size: 18px; align-items: center; }
+  .menu-mock .top .logo { font-style: italic; color: var(--walnut); margin-right: auto; font-weight: 500; }
+  .menu-mock .top .cta-btn { background: var(--walnut); color: var(--paper); padding: 6px 14px; font-family: var(--sans); font-size: 12px; letter-spacing: 0.04em; }
+  .menu-mock .drawer { padding-top: 14px; display: grid; grid-template-columns: 180px 1fr; gap: 24px; color: var(--muted); }
+  .menu-mock .drawer .col { display: flex; flex-direction: column; gap: 4px; }
+  .menu-mock .drawer .col .h { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terra); margin-bottom: 4px; }
+  .menu-mock .drawer .col span { color: var(--ink-2); }
+  .menu-mock .drawer .right { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  /* ---------- 7. SEO ---------- */
+  .seo-cluster {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+  .seo-cluster .col { padding: 20px 18px 24px; border-right: 1px solid var(--rule); }
+  .seo-cluster .col:last-child { border-right: 0; }
+  .seo-cluster .col .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terra); margin-bottom: 12px; }
+  .seo-cluster .col ul { padding: 0; margin: 0; list-style: none; }
+  .seo-cluster .col li { padding: 6px 0; font-size: 13px; color: var(--ink-2); border-bottom: 1px dotted var(--rule); }
+  .seo-cluster .col li:last-child { border-bottom: 0; }
+
+  .editorial-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-top: 24px; }
+  .editorial-list .item { padding: 18px 24px 18px 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 36px 1fr; gap: 14px; }
+  .editorial-list .item .num { font-size: 18px; }
+  .editorial-list .item h4 { font-size: 16px; margin-bottom: 4px; font-family: var(--serif); font-weight: 500; }
+  .editorial-list .item p { font-size: 13px; margin: 0; color: var(--muted); }
+
+  /* ---------- 8. Output finale ---------- */
+  .priorities { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--ink); }
+  .pri { padding: 32px 28px 36px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); position: relative; }
+  .pri:last-child { border-right: 0; }
+  .pri .lvl { font-family: var(--serif); font-style: italic; font-size: 64px; line-height: 0.9; color: var(--terra); margin-bottom: 6px; }
+  .pri .lvl .small { font-family: var(--mono); font-style: normal; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); display: block; text-transform: uppercase; margin-bottom: 8px; }
+  .pri h4 { margin-bottom: 12px; font-size: 21px; }
+  .pri ul { padding-left: 18px; margin: 0; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+
+  .errors {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    margin-top: 8px;
+  }
+  .errors .err {
+    padding: 22px 26px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+  }
+  .errors .err:nth-child(2n) { border-right: 0; }
+  .errors .err .x { font-family: var(--serif); font-style: italic; color: var(--terra); font-size: 22px; line-height: 1; }
+  .errors .err h4 { margin-bottom: 4px; font-size: 16px; font-family: var(--serif); font-weight: 500; }
+  .errors .err p { font-size: 13px; margin: 0; color: var(--muted); line-height: 1.5; }
+
+  .roadmap {
+    margin-top: 32px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 0;
+  }
+  .roadmap-head {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-bottom: 1px solid var(--ink);
+    background: var(--bg-2);
+  }
+  .roadmap-head div {
+    padding: 14px 18px;
+    border-right: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .roadmap-head div:last-child { border-right: 0; }
+  .roadmap-head .week { color: var(--terra); margin-top: 2px; display: block; font-family: var(--serif); font-style: italic; font-size: 18px; letter-spacing: 0; text-transform: none; }
+  .roadmap-body { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .roadmap-body .phase { padding: 22px 18px 26px; border-right: 1px solid var(--rule); }
+  .roadmap-body .phase:last-child { border-right: 0; }
+  .roadmap-body .phase h4 { font-size: 17px; margin-bottom: 12px; }
+  .roadmap-body .phase ul { padding-left: 16px; margin: 0; font-size: 12px; line-height: 1.55; color: var(--ink-2); }
+
+  .closing {
+    margin-top: 80px;
+    padding: 64px 0 32px;
+    border-top: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+  }
+  .closing p { font-family: var(--serif); font-size: 28px; line-height: 1.3; color: var(--ink); max-width: 28ch; margin: 0; }
+  .closing p em { color: var(--walnut); }
+  .closing .sig { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-align: right; line-height: 2; }
+  .closing .sig strong { color: var(--ink); font-weight: 500; }
+
+  @media print {
+    body { background: white; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <div class="masthead">
+    <div class="left">Documento strategico · Riservato</div>
+    <div class="center">Idealmobili &amp; Sfera Design</div>
+    <div class="right">v.01 — Maggio 2026</div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1>
+      Cinquant'anni<br>
+      di <span class="alt">progetto</span>,<br>
+      una nuova <span class="amp">&amp;</span> casa<br>
+      <span class="alt">digitale.</span>
+    </h1>
+    <div class="meta">
+      <div><strong>Piano strategico</strong></div>
+      <div>Nuovo sito web</div>
+      <div>—</div>
+      <div>Brand · UX · IA · SEO</div>
+      <div>8 sezioni / 12 minuti</div>
+    </div>
+  </header>
+
+  <div class="hero-sub">
+    <p class="lede">
+      Un piano per portare online <em>l'esperienza dello showroom</em>: dalla
+      tradizione artigianale del legno al servizio di progettazione
+      contemporanea, senza scivolare nella retorica del catalogo.
+    </p>
+    <div class="credit">
+      <div><span>Cliente</span><span>Idealmobili &amp; Sfera Design</span></div>
+      <div><span>Settore</span><span>Arredamento &amp; interior design, fascia medio-alta</span></div>
+      <div><span>Territorio</span><span>Lecce e Puglia / clientela locale e regionale</span></div>
+      <div><span>Anni di storia</span><span>Dal 1972 · oltre 50 anni di attività</span></div>
+      <div><span>Output</span><span>Posizionamento, direzione creativa, IA, homepage, UX, SEO, roadmap</span></div>
+    </div>
+  </div>
+
+  <!-- ============ 1. POSIZIONAMENTO ============ -->
+  <section>
+    <div class="section-head">
+      <div class="idx">01</div>
+      <h2>Posizionamento<br>del sito.</h2>
+      <div class="kicker">Cosa deve dire, in una frase, prima ancora di mostrare un divano.</div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="eyebrow" style="margin-bottom: 14px;">Proposta di valore</div>
+        <div class="vp-card">
+          <span class="eyebrow">Tagline strategica</span>
+          <p>
+            Da oltre cinquant'anni <span class="accent">progettiamo le case</span>
+            del Salento — un dialogo paziente tra <span class="accent">legno,
+            luce e abitudini</span>, dallo studio del progetto fino all'ultima
+            maniglia montata.
+          </p>
+        </div>
+        <p style="margin-top: 18px; font-size: 13px; color: var(--muted); font-style: italic; max-width: 44ch;">
+          Tre concetti chiave da trattenere: <span class="em-serif">progettare</span>
+          (non "vendere"), <span class="em-serif">dialogo</span> (consulenza, non listino),
+          <span class="em-serif">cinquant'anni</span> (storia come prova, non come nostalgia).
+        </p>
+      </div>
+
+      <div>
+        <div class="eyebrow" style="margin-bottom: 14px;">Tono di voce</div>
+        <table class="tone-table">
+          <thead><tr><th>Attributo</th><th>Sì</th><th>No</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Registro</strong></td><td class="si">Sicuro, posato</td><td class="no">Promozionale, urlato</td></tr>
+            <tr><td><strong>Pronome</strong></td><td class="si">"Noi" / "la sua casa"</td><td class="no">"Tu" colloquiale</td></tr>
+            <tr><td><strong>Lessico</strong></td><td class="si">Progetto, ambiente, misura</td><td class="no">Outlet, sconto, super</td></tr>
+            <tr><td><strong>Frasi</strong></td><td class="si">Brevi, dense, italiane</td><td class="no">Anglicismi gratuiti</td></tr>
+            <tr><td colspan="3" class="example">"La casa è un progetto, non un acquisto."</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px;">
+      <div class="eyebrow" style="margin-bottom: 14px;">Messaggi chiave</div>
+      <div class="key-msgs">
+        <div class="msg">
+          <span class="num">i.</span>
+          <h4>L'esperienza vale più del prezzo.</h4>
+          <p>Mezzo secolo di pratica si traduce in soluzioni che durano: nei materiali, nelle abitudini, nel tempo.</p>
+        </div>
+        <div class="msg">
+          <span class="num">ii.</span>
+          <h4>Il progetto è il prodotto.</h4>
+          <p>Non vendiamo mobili sparsi: disegniamo l'ambiente, scegliamo i partner, seguiamo la posa.</p>
+        </div>
+        <div class="msg">
+          <span class="num">iii.</span>
+          <h4>Lo showroom è un atelier.</h4>
+          <p>Due luoghi fisici dove toccare i materiali, sedersi con il progettista, vedere il progetto crescere.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px;">
+      <div class="eyebrow" style="margin-bottom: 14px;">Differenziatori — vs. concorrenza locale</div>
+      <ul class="diff-list">
+        <li>
+          <span class="n">a.</span>
+          <div>
+            <h4>Cultura del progetto, non del catalogo.</h4>
+            <p>I competitor locali vendono per marchio (cucina X, divano Y). Noi raccontiamo l'ambiente finito: come la luce delle 18:00 attraversa il rovere del tavolo, come la zona notte cambia quando i figli crescono.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n">b.</span>
+          <div>
+            <h4>Una storia che si tocca.</h4>
+            <p>Origine artigianale nel legno = credibilità materica reale. Da raccontare con foto del laboratorio storico, oggetti, anni, persone — non con uno slogan.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n">c.</span>
+          <div>
+            <h4>Due showroom come spazi vissuti.</h4>
+            <p>Non "punti vendita": ambienti allestiti, dove l'appuntamento con il consulente è il vero servizio. Il sito deve guidare proprio lì.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n">d.</span>
+          <div>
+            <h4>Curatela dei brand.</h4>
+            <p>Non si propone "tutto": si propone una selezione coerente. Il sito mostra i marchi come una libreria curata, con criterio dichiarato.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n">e.</span>
+          <div>
+            <h4>Realizzazioni reali come prova.</h4>
+            <p>Foto di case effettivamente arredate da clienti reali — il differenziatore che i marketplace e i siti-catalogo non hanno e non possono avere.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 2. DIREZIONE CREATIVA ============ -->
+  <section>
+    <div class="section-head">
+      <div class="idx">02</div>
+      <h2>Direzione<br>creativa.</h2>
+      <div class="kicker">Tre strade. Una raccomandata. La scelta determina tutto il resto.</div>
+    </div>
+
+    <div class="grid-3">
+
+      <!-- Direction A -->
+      <article class="direction">
+        <div class="swatch-row">
+          <div style="background:#F4EFE6" class="light" data-c="#F4EFE6"></div>
+          <div style="background:#E6DCC6" class="light" data-c="#E6DCC6"></div>
+          <div style="background:#4A2F1E" data-c="#4A2F1E"></div>
+          <div style="background:#1F1B16" data-c="#1F1B16"></div>
+          <div style="background:#B5563A" data-c="#B5563A"></div>
+        </div>
+        <div class="body">
+          <div class="name">Concept A</div>
+          <h3>Atelier del Legno.</h3>
+          <p class="atm">Caldo, materico, narrativo. La pagina sembra una rivista d'arredamento italiana anni Settanta riletta oggi: spazi bianchi ampi, fotografia molto presente, dettagli di noce e cuoio.</p>
+          <dl>
+            <div><dt>Palette</dt><dd>Avorio, ecru, noce profondo, nero inchiostro, accento terracotta.</dd></div>
+            <div><dt>Tipografia</dt><dd>Serif editoriale (Cormorant / Romana) + sans neutra (Söhne / Work Sans).</dd></div>
+            <div><dt>Immagini</dt><dd>Still life materici, mani al lavoro, dettagli di venatura, ambienti con luce naturale.</dd></div>
+            <div><dt>Sensazione</dt><dd>Mestiere, calore, tempo lento, qualità che si tocca.</dd></div>
+          </dl>
+        </div>
+        <div class="rec recommended"></div>
+      </article>
+
+      <!-- Direction B (RECOMMENDED) -->
+      <article class="direction recommended">
+        <div class="swatch-row">
+          <div style="background:#FBF7EF" class="light" data-c="#FBF7EF"></div>
+          <div style="background:#D9CFB8" class="light" data-c="#D9CFB8"></div>
+          <div style="background:#3A332B" data-c="#3A332B"></div>
+          <div style="background:#6B7A5A" data-c="#6B7A5A"></div>
+          <div style="background:#9B7A3A" data-c="#9B7A3A"></div>
+        </div>
+        <div class="body">
+          <div class="name">Concept B · raccomandato</div>
+          <h3>Casa Mediterranea.</h3>
+          <p class="atm">Eleganza italiana misurata, territoriale ma non folcloristica. Bianchi caldi tipici della pietra leccese, verdi salvia, ottone spento. Sembra una casa di famiglia colta, non un'agenzia di branding.</p>
+          <dl>
+            <div><dt>Palette</dt><dd>Bianco-pietra, sabbia, inchiostro caldo, salvia, ottone.</dd></div>
+            <div><dt>Tipografia</dt><dd>Serif classico per titoli, grottesco umanista per testo, monospace per dati.</dd></div>
+            <div><dt>Immagini</dt><dd>Ambienti pieni di luce, vita reale dentro le case, scorci pugliesi, finestre, tessuti.</dd></div>
+            <div><dt>Sensazione</dt><dd>Casa, appartenenza, calma, fiducia che nasce dal territorio.</dd></div>
+          </dl>
+        </div>
+        <div class="rec">
+          <span>Direzione consigliata</span>
+          <span class="badge">★ Best fit</span>
+        </div>
+      </article>
+
+      <!-- Direction C -->
+      <article class="direction">
+        <div class="swatch-row">
+          <div style="background:#F2F2EF" class="light" data-c="#F2F2EF"></div>
+          <div style="background:#D7D4CD" class="light" data-c="#D7D4CD"></div>
+          <div style="background:#2A2A28" data-c="#2A2A28"></div>
+          <div style="background:#0E0E0D" data-c="#0E0E0D"></div>
+          <div style="background:#A38858" data-c="#A38858"></div>
+        </div>
+        <div class="body">
+          <div class="name">Concept C</div>
+          <h3>Galleria Contemporanea.</h3>
+          <p class="atm">Più minimale, più "design gallery". Bianchi e grigi, tipografia molto pulita, fotografia da catalogo d'arte. Forte impatto, ma rischia di perdere la dimensione artigianale e calda.</p>
+          <dl>
+            <div><dt>Palette</dt><dd>Bianco freddo, grigio carta, nero, accento oro spento.</dd></div>
+            <div><dt>Tipografia</dt><dd>Serif moderno (Söhne Schmal / GT Sectra) + sans geometrica.</dd></div>
+            <div><dt>Immagini</dt><dd>Fotografia neutra, prodotti isolati, architetture, geometria.</dd></div>
+            <div><dt>Sensazione</dt><dd>Curato, freddo, contemporaneo — ma poco territoriale.</dd></div>
+          </dl>
+        </div>
+        <div class="rec"><span>Alternativa più contemporanea</span></div>
+      </article>
+    </div>
+
+    <div class="direction-recnote">
+      <div>
+        <div class="eyebrow">Raccomandazione</div>
+        <div style="font-family: var(--serif); font-style: italic; font-size: 56px; line-height: 1; margin-top: 12px; color: #E8C68B;">B.</div>
+      </div>
+      <p>
+        <strong>Casa Mediterranea</strong> è la direzione che meglio tiene insieme i tre pilastri del brief:
+        eleganza italiana, calore territoriale, autorevolezza del progetto. È
+        <em>distintiva</em> rispetto ai concorrenti (che oscillano tra catalogo nordico e
+        e-commerce promozionale) e <em>sostenibile</em> nel tempo: una palette materica
+        invecchia bene, una scelta tipografica troppo trendy no.
+        Concept A può essere uno scenario di backup; C lo escluderei per il rischio di
+        sembrare freddo e replicabile.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 3. ARCHITETTURA ============ -->
+  <section>
+    <div class="section-head">
+      <div class="idx">03</div>
+      <h2>Architettura<br>del sito.</h2>
+      <div class="kicker">Sitemap pensata per due viaggi paralleli: "voglio idee" e "voglio un appuntamento".</div>
+    </div>
+
+    <div class="sitemap-tree">
+<span class="root">/</span> <span class="lvl1">Home</span> <span class="note">— porta d'ingresso, racconto + smistamento</span>
+├── <span class="lvl1">Chi siamo</span>
+│   ├── <span class="lvl2">La nostra storia</span> <span class="note">(dal 1972, dal legno al progetto)</span>
+│   ├── <span class="lvl2">Il metodo di progettazione</span>
+│   └── <span class="lvl2">Persone &amp; squadra</span>
+├── <span class="lvl1">Showroom</span>
+│   ├── <span class="lvl2">Showroom 1 — [città]</span>
+│   └── <span class="lvl2">Showroom 2 — [città]</span>
+├── <span class="lvl1">Ambienti</span> <span class="note">— hub principale, "cosa devi arredare"</span>
+│   ├── <span class="lvl2">Cucine</span> <span class="note">★ SEO priority</span>
+│   ├── <span class="lvl2">Living &amp; zona giorno</span>
+│   ├── <span class="lvl2">Zona notte</span>
+│   ├── <span class="lvl2">Camerette</span>
+│   └── <span class="lvl2">Bagno / outdoor</span> <span class="note">(se in scope)</span>
+├── <span class="lvl1">Progetti realizzati</span> <span class="note">— prova sociale, fascia alta</span>
+│   └── <span class="lvl2">Singolo progetto</span> <span class="note">(case studies)</span>
+├── <span class="lvl1">Servizi</span>
+│   ├── <span class="lvl2">Consulenza progettuale</span>
+│   ├── <span class="lvl2">Rilievo &amp; progetto 3D</span>
+│   ├── <span class="lvl2">Posa &amp; assistenza post-vendita</span>
+│   └── <span class="lvl2">Finanziamento / pagamenti</span>
+├── <span class="lvl1">Brand partner</span> <span class="note">— curatela, non listone</span>
+├── <span class="lvl1">Contatti</span>
+│   └── <span class="lvl2">Prenota appuntamento</span> <span class="note">★ conversione principale</span>
+└── <span class="lvl1">Magazine</span> <span class="note">(opzionale, fase 2 — SEO &amp; brand)</span></div>
+
+    <table class="page-table">
+      <thead>
+        <tr>
+          <th style="width: 200px;">Pagina</th>
+          <th>Obiettivo</th>
+          <th>Contenuti chiave</th>
+          <th style="width: 180px;">CTA principale</th>
+          <th style="width: 110px;">SEO</th>
+          <th style="width: 110px;">Commerciale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pname">Home<span class="sub">/</span></span></td>
+          <td>Trasmettere identità, smistare verso ambienti e appuntamento in showroom.</td>
+          <td>Hero narrativo, tre ambienti chiave, progetti recenti, racconto storia, due showroom, contatto.</td>
+          <td class="cta">Prenota una visita</td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="pname">Chi siamo<span class="sub">/chi-siamo</span></span></td>
+          <td>Costruire fiducia attraverso storia, persone, metodo.</td>
+          <td>Timeline 1972 → oggi, foto laboratorio storico, foto squadra attuale, valori, "perché ci scelgono".</td>
+          <td class="cta">Vieni a conoscerci</td>
+          <td><span class="prio"><span class="dot dot-med"></span><span class="v">Media</span></span></td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="pname">Showroom<span class="sub">/showroom</span></span></td>
+          <td>Portare il visitatore fisicamente in showroom; geo-SEO locale.</td>
+          <td>Pagina indice + scheda per ciascun showroom: foto, indirizzo, mappa, orari, persone di riferimento, come prepararsi alla visita.</td>
+          <td class="cta">Prenota appuntamento</td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="pname">Ambienti — Cucine<span class="sub">/ambienti/cucine</span></span></td>
+          <td>Pagina pilastro commerciale &amp; SEO. Far percepire varietà + qualità del progetto cucina.</td>
+          <td>Approccio progettuale alla cucina, stili (moderna / classica / artigianale), brand partner cucina, 8–12 progetti reali, FAQ.</td>
+          <td class="cta">Progettiamo la tua cucina</td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Massima</span></span></td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Massima</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="pname">Ambienti — Living<span class="sub">/ambienti/living</span></span></td>
+          <td>Catturare ricerche su soggiorno / divani / zona giorno.</td>
+          <td>Filosofia del living, tipologie (open space, salotto formale, ecc.), brand partner, progetti, ispirazioni.</td>
+          <td class="cta">Richiedi un progetto living</td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="pname">Ambienti — Zona notte<span class="sub">/ambienti/zona-notte</span></span></td>
+          <td>Catturare ricerche camere da letto, armadi, materassi.</td>
+          <td>Approccio al riposo, armadi su misura, letti, materassi, brand, progetti.</td>
+          <td class="cta">Progettiamo la tua zona notte</td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+          <td><span class="prio"><span class="dot dot-med"></span><span class="v">Media</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="pname">Progetti realizzati<span class="sub">/progetti</span></span></td>
+          <td>Prova sociale "alta". Mostrare il livello del servizio attraverso case reali.</td>
+          <td>Griglia di progetti filtrabile per ambiente / stile / luogo. Singolo progetto: foto prima/dopo, brief, soluzioni, testimonial.</td>
+          <td class="cta">Iniziamo il tuo progetto</td>
+          <td><span class="prio"><span class="dot dot-med"></span><span class="v">Media</span></span></td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="pname">Servizi<span class="sub">/servizi</span></span></td>
+          <td>Esplicitare cosa è incluso nel servizio, oltre al "vendere mobili".</td>
+          <td>Sopralluogo, progetto 3D, scelta materiali, consegna, posa, post-vendita, finanziamenti. Tempi indicativi.</td>
+          <td class="cta">Parliamo del tuo progetto</td>
+          <td><span class="prio"><span class="dot dot-med"></span><span class="v">Media</span></span></td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="pname">Brand partner<span class="sub">/brand</span></span></td>
+          <td>Mostrare curatela e autorevolezza commerciale.</td>
+          <td>Logo + breve scheda di ciascun brand: tipologia, da quanti anni trattato, in quale showroom è esposto.</td>
+          <td class="cta">Vieni a vederli in showroom</td>
+          <td><span class="prio"><span class="dot dot-med"></span><span class="v">Media</span></span></td>
+          <td><span class="prio"><span class="dot dot-med"></span><span class="v">Media</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="pname">Contatti / Appuntamento<span class="sub">/contatti</span></span></td>
+          <td>Massimizzare le richieste qualificate.</td>
+          <td>Form intelligente (ambiente, tempistiche, budget indicativo), telefono, WhatsApp, mappa, orari, persona di riferimento.</td>
+          <td class="cta">Prenota appuntamento</td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Massima</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="pname">Magazine<span class="sub">/magazine · fase 2</span></span></td>
+          <td>SEO long-tail, autorevolezza editoriale.</td>
+          <td>Articoli evergreen su scelte d'arredo, dietro le quinte progetti, interviste, guide.</td>
+          <td class="cta">Iscriviti alla newsletter</td>
+          <td><span class="prio"><span class="dot dot-high"></span><span class="v">Alta</span></span></td>
+          <td><span class="prio"><span class="dot dot-low"></span><span class="v">Bassa</span></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ 4. HOMEPAGE ============ -->
+  <section>
+    <div class="section-head">
+      <div class="idx">04</div>
+      <h2>Homepage<br>strategy.</h2>
+      <div class="kicker">Otto sezioni. Ogni sezione risponde a una domanda del visitatore.</div>
+    </div>
+
+    <div class="hp-section">
+      <div class="id">i.<span class="sub">Hero</span></div>
+      <div>
+        <div class="func">Funzione · Identità + primo smistamento</div>
+        <h3>"La casa è un progetto."</h3>
+        <ul>
+          <li>Una headline forte, breve, in serif grande.</li>
+          <li>Un sottotitolo che nomina i due showroom e gli anni di storia.</li>
+          <li>Due ingressi alternativi: <em>Esplora gli ambienti</em> / <em>Prenota una visita</em>.</li>
+        </ul>
+        <div class="cta">Prenota una visita in showroom</div>
+      </div>
+      <div class="visual">
+        <span class="lbl">Visual · Full bleed</span>
+        <div class="descr">Ambiente reale in penombra di una casa appena consegnata — luce naturale laterale, niente persone, dettaglio materico in primo piano.</div>
+        <span class="lbl" style="text-align:right;">16:9 · ~70vh</span>
+      </div>
+    </div>
+
+    <div class="hp-section">
+      <div class="id">ii.<span class="sub">Tre ambienti</span></div>
+      <div>
+        <div class="func">Funzione · Smistamento commerciale</div>
+        <h3>"Cosa state arredando?"</h3>
+        <ul>
+          <li>Tre card grandi: <em>Cucine</em>, <em>Living</em>, <em>Zona notte</em>.</li>
+          <li>Ogni card: foto verticale + nome ambiente + sotto-titolo (es. "32 progetti realizzati").</li>
+          <li>Pensata per essere il primo CTA cliccato.</li>
+        </ul>
+        <div class="cta">Vedi tutti gli ambienti</div>
+      </div>
+      <div class="visual">
+        <span class="lbl">Visual · Griglia 3 col.</span>
+        <div class="descr">Tre fotografie verticali, ognuna di un ambiente arredato dallo studio. Tipografia serif sovrapposta in basso a sinistra.</div>
+        <span class="lbl" style="text-align:right;">3 × 3:4</span>
+      </div>
+    </div>
+
+    <div class="hp-section">
+      <div class="id">iii.<span class="sub">Manifesto</span></div>
+      <div>
+        <div class="func">Funzione · Marca · differenziazione</div>
+        <h3>"Non vendiamo mobili. Disegniamo case."</h3>
+        <ul>
+          <li>Un breve manifesto in 3–4 frasi serif, su sfondo caldo.</li>
+          <li>Spiega in modo asciutto cosa significa "progettare" da Idealmobili &amp; Sfera.</li>
+          <li>Nessun CTA: serve a respirare e a posizionare.</li>
+        </ul>
+        <div class="cta">Scopri il nostro metodo</div>
+      </div>
+      <div class="visual">
+        <span class="lbl">Visual · Tipografico</span>
+        <div class="descr">Quasi puro testo. Sfondo color pietra. Un singolo dettaglio fotografico piccolo (una mano, una venatura) come ancora visiva.</div>
+        <span class="lbl" style="text-align:right;">Asciutto</span>
+      </div>
+    </div>
+
+    <div class="hp-section">
+      <div class="id">iv.<span class="sub">Progetti recenti</span></div>
+      <div>
+        <div class="func">Funzione · Prova sociale visiva</div>
+        <h3>"Ultimi progetti consegnati."</h3>
+        <ul>
+          <li>Carosello orizzontale (3–4 visibili) di progetti reali.</li>
+          <li>Per ogni progetto: foto, titolo del progetto, tipologia, anno.</li>
+          <li>Click su singolo progetto → case study.</li>
+        </ul>
+        <div class="cta">Vedi tutti i progetti</div>
+      </div>
+      <div class="visual">
+        <span class="lbl">Visual · Carosello editoriale</span>
+        <div class="descr">Strisciata orizzontale tipo magazine. Sfondo ecru. Foto ampie, didascalie piccole in mono.</div>
+        <span class="lbl" style="text-align:right;">Scroll · drag</span>
+      </div>
+    </div>
+
+    <div class="hp-section">
+      <div class="id">v.<span class="sub">Storia</span></div>
+      <div>
+        <div class="func">Funzione · Autorevolezza, calore, territorio</div>
+        <h3>"Dal 1972, una stessa idea di casa."</h3>
+        <ul>
+          <li>Foto del laboratorio storico + foto recente affiancate.</li>
+          <li>Tre numeri chiave (anni, progetti realizzati, brand trattati).</li>
+          <li>Breve testo, link a "Chi siamo".</li>
+        </ul>
+        <div class="cta">La nostra storia</div>
+      </div>
+      <div class="visual">
+        <span class="lbl">Visual · Diptych temporale</span>
+        <div class="descr">Due foto affiancate: una in bianco e nero (anni '70, laboratorio), una a colori (oggi, showroom). Tipografia serif e cifre grandi.</div>
+        <span class="lbl" style="text-align:right;">2 × 1:1</span>
+      </div>
+    </div>
+
+    <div class="hp-section">
+      <div class="id">vi.<span class="sub">I due showroom</span></div>
+      <div>
+        <div class="func">Funzione · Conversione locale</div>
+        <h3>"Due luoghi dove la casa prende forma."</h3>
+        <ul>
+          <li>Due schede paritetiche con: foto interna, indirizzo, orari, mappa piccola.</li>
+          <li>Bottone "Prenota appuntamento" su ogni scheda.</li>
+        </ul>
+        <div class="cta">Scegli il tuo showroom</div>
+      </div>
+      <div class="visual">
+        <span class="lbl">Visual · Due schede</span>
+        <div class="descr">Due card affiancate, foto interna degli spazi, layout simmetrico. Niente loghi di brand: solo lo spazio.</div>
+        <span class="lbl" style="text-align:right;">2 col</span>
+      </div>
+    </div>
+
+    <div class="hp-section">
+      <div class="id">vii.<span class="sub">Testimonianze</span></div>
+      <div>
+        <div class="func">Funzione · Fiducia, voce dei clienti</div>
+        <h3>"Lo dicono loro, non noi."</h3>
+        <ul>
+          <li>Tre testimonianze brevi, citate per esteso, con nome e progetto associato.</li>
+          <li>Stile editoriale: virgolette grandi serif, testo nero su pietra.</li>
+        </ul>
+        <div class="cta">Leggi più testimonianze</div>
+      </div>
+      <div class="visual">
+        <span class="lbl">Visual · Tipografico</span>
+        <div class="descr">Cite-block grandi. Nessuna foto del cliente (rispetto privacy + eleganza), ma piccola thumbnail del progetto a cui si riferisce.</div>
+        <span class="lbl" style="text-align:right;">3 col / stack mobile</span>
+      </div>
+    </div>
+
+    <div class="hp-section">
+      <div class="id">viii.<span class="sub">Contatto finale</span></div>
+      <div>
+        <div class="func">Funzione · Conversione · ultima chance</div>
+        <h3>"Iniziamo dal vostro progetto."</h3>
+        <ul>
+          <li>Modulo breve in 3 campi + selezione ambiente + scelta showroom.</li>
+          <li>Telefono e WhatsApp visibili.</li>
+          <li>Una frase rassicurante: "Vi richiamiamo entro 24 ore lavorative."</li>
+        </ul>
+        <div class="cta">Prenota appuntamento</div>
+      </div>
+      <div class="visual">
+        <span class="lbl">Visual · Form &amp; mappa</span>
+        <div class="descr">Modulo a sinistra, mappa con i due showroom a destra. Sfondo scuro noce, contrasto alto sul CTA.</div>
+        <span class="lbl" style="text-align:right;">2 col</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. CHECKLIST CONTENUTI ============ -->
+  <section>
+    <div class="section-head">
+      <div class="idx">05</div>
+      <h2>Contenuti<br>da raccogliere.</h2>
+      <div class="kicker">Senza questi materiali, il sito non si fa. È la fase più sottovalutata e più lenta — iniziare ora.</div>
+    </div>
+
+    <div class="checklist-grid">
+      <div class="check-block">
+        <h4>Contenuti testuali <span class="count">12 voci</span></h4>
+        <ul class="check-list">
+          <li><span>Storia del brand dal 1972 — versione lunga + breve <span class="priority">★ critico</span></span></li>
+          <li><span>Manifesto / metodo di lavoro in 1 pagina</span></li>
+          <li><span>Descrizione di ciascun ambiente (cucine, living, zona notte…)</span></li>
+          <li><span>Descrizione di ogni servizio (sopralluogo, progetto 3D, posa, post-vendita)</span></li>
+          <li><span>Bio delle persone chiave dello studio</span></li>
+          <li><span>Scheda di ciascun showroom (cosa si trova, atmosfera, plus)</span></li>
+          <li><span>FAQ commerciali ricorrenti (tempi, prezzi indicativi, sopralluogo, pagamenti)</span></li>
+          <li><span>Glossario interno: "progetto", "rilievo", "su misura", "consegna chiavi in mano"</span></li>
+          <li><span>Testi legali (privacy, cookie, condizioni)</span></li>
+          <li><span>Pay-off / claim brevi per home e ambienti</span></li>
+          <li><span>Microcopy del form contatti</span></li>
+          <li><span>Testo per email di conferma appuntamento</span></li>
+        </ul>
+      </div>
+
+      <div class="check-block">
+        <h4>Foto showroom <span class="count">~40 scatti</span></h4>
+        <ul class="check-list">
+          <li><span>Esterno di ogni showroom — giorno e tramonto <span class="priority">★ critico</span></span></li>
+          <li><span>Ingresso / accoglienza di ogni showroom</span></li>
+          <li><span>5–8 ambienti allestiti per showroom (cucine, living, zona notte)</span></li>
+          <li><span>Dettagli materici (legno, tessuti, maniglie)</span></li>
+          <li><span>"Dietro le quinte": consulente con cliente al tavolo progetto</span></li>
+          <li><span>Foto verticali pensate per mobile</span></li>
+          <li><span>Brief al fotografo: luce naturale, niente HDR, niente persone identificabili senza liberatoria</span></li>
+        </ul>
+      </div>
+
+      <div class="check-block">
+        <h4>Foto ambienti / progetti <span class="count">8–12 case</span></h4>
+        <ul class="check-list">
+          <li><span>Selezione di 8–12 progetti realizzati negli ultimi 3 anni <span class="priority">★ critico</span></span></li>
+          <li><span>Per ogni progetto: 6–10 foto professionali</span></li>
+          <li><span>Almeno una foto "ampia" e una "dettaglio" per progetto</span></li>
+          <li><span>Liberatoria scritta del cliente per l'uso delle foto</span></li>
+          <li><span>Brief dei progetti (chi era il cliente, esigenza, soluzione, tempi)</span></li>
+          <li><span>Eventuali planimetrie / render 3D originali del progetto</span></li>
+        </ul>
+      </div>
+
+      <div class="check-block">
+        <h4>Recensioni &amp; testimonianze <span class="count">≥10</span></h4>
+        <ul class="check-list">
+          <li><span>Raccogliere recensioni Google esistenti — selezionare le 6–8 migliori</span></li>
+          <li><span>Contattare 5 clienti recenti per testimonianza scritta dedicata</span></li>
+          <li><span>Per ognuna: testo, nome puntato (es. "Mariangela L."), ambiente, anno</span></li>
+          <li><span>Eventuali video-testimonianze brevi (30–45 sec)</span></li>
+        </ul>
+      </div>
+
+      <div class="check-block">
+        <h4>Brand trattati <span class="count">elenco completo</span></h4>
+        <ul class="check-list">
+          <li><span>Lista aggiornata di tutti i brand partner</span></li>
+          <li><span>Per ognuno: logo vettoriale ufficiale, categoria, anno di inizio collaborazione</span></li>
+          <li><span>Indicazione di in quale showroom è esposto</span></li>
+          <li><span>Eventuale gerarchia: "main partner" vs catalogo</span></li>
+        </ul>
+      </div>
+
+      <div class="check-block">
+        <h4>Servizi offerti <span class="count">scheda per servizio</span></h4>
+        <ul class="check-list">
+          <li><span>Elenco esaustivo dei servizi (anche quelli "ovvi" come la posa)</span></li>
+          <li><span>Per ognuno: cosa include, tempi indicativi, costi (se dicibili)</span></li>
+          <li><span>Dichiarazione esplicita su sopralluogo e progetto: gratuito? a pagamento? a partire da?</span></li>
+          <li><span>Modalità di pagamento e finanziamento</span></li>
+        </ul>
+      </div>
+
+      <div class="check-block">
+        <h4>Informazioni commerciali</h4>
+        <ul class="check-list">
+          <li><span>Aree geografiche coperte per consegna e posa</span></li>
+          <li><span>Tempi medi tra primo appuntamento e consegna chiavi in mano</span></li>
+          <li><span>Politica su preventivi, sopralluoghi, sostituzioni</span></li>
+          <li><span>Eventuali promozioni stagionali strutturali</span></li>
+        </ul>
+      </div>
+
+      <div class="check-block">
+        <h4>Contatti, indirizzi, orari</h4>
+        <ul class="check-list">
+          <li><span>Indirizzi precisi di entrambi gli showroom + Google Maps link <span class="priority">★ critico</span></span></li>
+          <li><span>Orari di apertura — incluse chiusure estive / festività</span></li>
+          <li><span>Numeri di telefono per showroom</span></li>
+          <li><span>Numero WhatsApp Business (separato dal personale)</span></li>
+          <li><span>Email generica + email del responsabile commerciale</span></li>
+          <li><span>P.IVA, ragione sociale completa, sede legale</span></li>
+        </ul>
+      </div>
+
+      <div class="check-block">
+        <h4>Numeri chiave &amp; certificazioni</h4>
+        <ul class="check-list">
+          <li><span>Anno di fondazione confermato (es. 1972)</span></li>
+          <li><span>Numero stimato di progetti realizzati negli anni</span></li>
+          <li><span>Numero brand trattati</span></li>
+          <li><span>Numero di persone nello studio</span></li>
+          <li><span>Eventuali premi, pubblicazioni su riviste, certificazioni</span></li>
+          <li><span>Eventuale appartenenza a consorzi / associazioni di categoria</span></li>
+        </ul>
+      </div>
+
+      <div class="check-block">
+        <h4>Asset di marca</h4>
+        <ul class="check-list">
+          <li><span>Logo originale + eventuali varianti storiche da valorizzare</span></li>
+          <li><span>Eventuali pattern, fregi, materiali grafici storici</span></li>
+          <li><span>Carta dei colori usata in showroom (se esiste)</span></li>
+          <li><span>Materiali stampa (brochure precedenti, biglietti da visita, catalogo)</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. UX ============ -->
+  <section>
+    <div class="section-head">
+      <div class="idx">06</div>
+      <h2>Linee guida<br>UX.</h2>
+      <div class="kicker">Cinque scelte di interazione che fanno la differenza. Mobile come progetto principale, non come "versione ridotta".</div>
+    </div>
+
+    <div class="ux-grid">
+
+      <div class="ux-card">
+        <div class="lbl">A — Menu</div>
+        <h3>Struttura menu: leggera in alto, completa in mega-drawer.</h3>
+        <p>Barra top con 5 voci principali (Ambienti, Progetti, Showroom, Servizi, Contatti) + bottone CTA "Prenota appuntamento" sempre visibile.</p>
+        <ul>
+          <li>"Ambienti" apre un mega-menu con immagini di anteprima per ciascun ambiente.</li>
+          <li>"Showroom" mostra direttamente i due showroom con indirizzo e CTA "Apri in mappa".</li>
+          <li>Su mobile: drawer full-screen con un solo livello visibile per volta — niente accordion sub-accordion.</li>
+        </ul>
+      </div>
+
+      <div class="ux-card">
+        <div class="lbl">B — Filtri</div>
+        <h3>Filtri pochi e leggibili sui progetti realizzati.</h3>
+        <p>I filtri di valore reale, non quelli "da catalogo":</p>
+        <ul>
+          <li><strong>Per ambiente</strong> (cucina · living · zona notte · intera casa).</li>
+          <li><strong>Per stile</strong> (contemporaneo · classico · artigianale).</li>
+          <li><strong>Per tipologia di abitazione</strong> (appartamento città · casa salentina · ristrutturazione).</li>
+          <li>No filtri per prezzo o brand: confondono il messaggio.</li>
+        </ul>
+      </div>
+
+      <div class="ux-card">
+        <div class="lbl">C — Appuntamento</div>
+        <h3>L'appuntamento è il prodotto: ridurre l'attrito a tre passi.</h3>
+        <p>Form intelligente, breve, con domande utili al consulente:</p>
+        <ul>
+          <li>Step 1: cosa state arredando (ambiente / intera casa).</li>
+          <li>Step 2: quale showroom preferite + due slot proposti.</li>
+          <li>Step 3: nome, telefono, eventuale messaggio.</li>
+          <li>Alternativa parallela: <strong>chiamata diretta</strong> e <strong>WhatsApp</strong>, sempre visibili. Non tutti vogliono compilare un form.</li>
+          <li>Conferma a schermo + email + SMS con foto del consulente. Fa percepire un servizio "alla persona".</li>
+        </ul>
+      </div>
+
+      <div class="ux-card">
+        <div class="lbl">D — Fiducia</div>
+        <h3>Mostrare consulenza e qualità con prove, non con aggettivi.</h3>
+        <p>La fiducia si trasmette con elementi concreti e ripetuti, mai con frasi del tipo "team di esperti".</p>
+        <ul>
+          <li>Foto reali dei progettisti, con nome.</li>
+          <li>Anni di attività e cifre messe in piccolo, dappertutto (footer, schede progetto, "chi siamo").</li>
+          <li>Testimonianze associate al progetto specifico.</li>
+          <li>"Come lavoriamo": un mini-percorso in 5 step su ogni pagina ambiente.</li>
+          <li>Tempi di risposta dichiarati (es. "risposta entro 24h lavorative").</li>
+        </ul>
+      </div>
+
+      <div class="ux-card">
+        <div class="lbl">E — Mobile first</div>
+        <h3>Progettare la versione mobile come prima, non come riduzione.</h3>
+        <p>L'utente tipo arriva da Google su uno smartphone, in pausa pranzo. Il sito deve funzionare lì.</p>
+        <ul>
+          <li>Bottone "Prenota" sempre presente in basso, fissato (sticky), su mobile.</li>
+          <li>Telefono e WhatsApp tappabili da ogni pagina ambiente, non solo in contatti.</li>
+          <li>Immagini ottimizzate: caricamento progressivo, niente pesi sopra i 200 kB.</li>
+          <li>Tipografia mobile: titoli serif comunque grandi, corpo testo ≥17 px.</li>
+          <li>Hit target ≥44 px su tutto.</li>
+        </ul>
+      </div>
+
+      <div class="ux-card">
+        <div class="lbl">F — Linguaggio visivo</div>
+        <h3>Editoriale prima che e-commerce.</h3>
+        <p>Coerenza del trattamento immagini, ritmo costante, generosità nei margini.</p>
+        <ul>
+          <li>Niente carosello in homepage che cambia da solo: il visitatore deve guidare.</li>
+          <li>Generosi spazi bianchi (caldi). Mai "riempire" sezioni con icone decorative.</li>
+          <li>Animazioni minime: leggere comparse, mai parallax aggressivi.</li>
+          <li>Stessa griglia tipografica su tutte le pagine ambiente, per creare ritmo.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="menu-mock" style="margin-top: 32px;">
+      <div class="top">
+        <span class="logo">Idealmobili &amp; Sfera</span>
+        <span>Ambienti</span>
+        <span>Progetti</span>
+        <span>Showroom</span>
+        <span>Servizi</span>
+        <span>Contatti</span>
+        <span class="cta-btn">Prenota appuntamento</span>
+      </div>
+      <div class="drawer">
+        <div class="col">
+          <span class="h">Ambienti</span>
+          <span>Cucine</span>
+          <span>Living &amp; zona giorno</span>
+          <span>Zona notte</span>
+          <span>Camerette</span>
+        </div>
+        <div class="right">
+          <div class="visual" style="height: 90px; background: repeating-linear-gradient(135deg, var(--bg-2) 0 6px, var(--paper) 6px 12px); border: 1px solid var(--rule);"></div>
+          <div class="visual" style="height: 90px; background: repeating-linear-gradient(135deg, var(--bg-2) 0 6px, var(--paper) 6px 12px); border: 1px solid var(--rule);"></div>
+          <div class="visual" style="height: 90px; background: repeating-linear-gradient(135deg, var(--bg-2) 0 6px, var(--paper) 6px 12px); border: 1px solid var(--rule);"></div>
+        </div>
+      </div>
+    </div>
+    <p style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 8px;">Mock · mega-menu Ambienti su desktop</p>
+  </section>
+
+  <!-- ============ 7. SEO ============ -->
+  <section>
+    <div class="section-head">
+      <div class="idx">07</div>
+      <h2>SEO &amp;<br>contenuti.</h2>
+      <div class="kicker">Locale prima di tutto. Quattro cluster di intent, una pagina pilastro per ognuno, magazine come moltiplicatore.</div>
+    </div>
+
+    <div class="seo-cluster">
+      <div class="col">
+        <div class="lbl">Cluster 1 · Cucine</div>
+        <ul>
+          <li>Cucine Lecce</li>
+          <li>Cucine moderne Lecce</li>
+          <li>Cucine classiche Salento</li>
+          <li>Cucine su misura</li>
+          <li>Cucine artigianali in legno</li>
+          <li>Showroom cucine Lecce</li>
+          <li>Progetto cucina su misura</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="lbl">Cluster 2 · Arredamento</div>
+        <ul>
+          <li>Arredamento Lecce</li>
+          <li>Arredamento casa Salento</li>
+          <li>Negozio arredamento Lecce</li>
+          <li>Mobili Lecce</li>
+          <li>Arredamento fascia alta Puglia</li>
+          <li>Arredamento ristrutturazione</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="lbl">Cluster 3 · Showroom</div>
+        <ul>
+          <li>Showroom arredamento Lecce</li>
+          <li>Showroom cucine [città 2]</li>
+          <li>Showroom design Salento</li>
+          <li>Esposizione mobili Lecce</li>
+          <li>Mobilificio storico Lecce</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="lbl">Cluster 4 · Interior design</div>
+        <ul>
+          <li>Interior designer Lecce</li>
+          <li>Progettazione interni Salento</li>
+          <li>Studio arredamento Lecce</li>
+          <li>Consulenza arredamento Puglia</li>
+          <li>Progetto casa chiavi in mano</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px;">
+      <div class="eyebrow" style="margin-bottom: 16px;">Pagine da creare per coprire i cluster</div>
+      <p style="max-width: 60ch;">
+        Oltre alle pagine ambiente già previste in architettura, conviene creare
+        <span class="em-serif">pagine geo-localizzate</span> e pagine di intent
+        commerciale specifiche. Esempi:
+      </p>
+      <table class="tone-table">
+        <thead><tr><th>Pagina</th><th>Intent target</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td><strong>/cucine-lecce</strong></td><td>Cucine + città principale</td><td>Variante geo della pagina ambiente, con foto progetti realizzati a Lecce.</td></tr>
+          <tr><td><strong>/cucine-su-misura</strong></td><td>Intent "custom"</td><td>Racconta processo: rilievo → render → produzione → posa.</td></tr>
+          <tr><td><strong>/arredamento-lecce</strong></td><td>Brand keyword principale</td><td>Pagina madre, sintesi di tutti gli ambienti.</td></tr>
+          <tr><td><strong>/showroom-lecce</strong></td><td>Geo-locale + intent visita</td><td>Da ottimizzare anche per Google Business Profile.</td></tr>
+          <tr><td><strong>/interior-design-salento</strong></td><td>Intent "designer", non "negozio"</td><td>Punta su metodo, progetti, persone — non su prodotti.</td></tr>
+          <tr><td><strong>/cucine-[brand-partner]</strong></td><td>Brand-aware buyer</td><td>Una pagina per brand cucina principale, in chiave editoriale, non promozionale.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 48px;">
+      <div class="eyebrow" style="margin-bottom: 8px;">Piano editoriale evergreen — magazine fase 2</div>
+      <div class="editorial-list">
+        <div class="item"><span class="num">01</span><div><h4>Come scegliere una cucina che durerà vent'anni.</h4><p>Guida critica al materiale, al piano, alle ante. Posiziona consulenza.</p></div></div>
+        <div class="item"><span class="num">02</span><div><h4>Living per case salentine: gestire la luce.</h4><p>Approccio progettuale all'esposizione tipica delle case del territorio.</p></div></div>
+        <div class="item"><span class="num">03</span><div><h4>Zona notte: dormire bene è un progetto.</h4><p>Materassi, illuminazione, armadi: come si pensa una camera.</p></div></div>
+        <div class="item"><span class="num">04</span><div><h4>Cinque progetti, cinque storie.</h4><p>Serie editoriale: ogni mese un cliente reale e la sua casa.</p></div></div>
+        <div class="item"><span class="num">05</span><div><h4>Il sopralluogo: cosa succede davvero.</h4><p>Dietro le quinte del primo appuntamento. Smonta la paura del prezzo.</p></div></div>
+        <div class="item"><span class="num">06</span><div><h4>Legno: glossario per chi arreda casa.</h4><p>Rovere, noce, frassino: cosa cambia, come si invecchia, come si pulisce.</p></div></div>
+        <div class="item"><span class="num">07</span><div><h4>Ristrutturare e arredare insieme.</h4><p>Quando coinvolgerci, perché conviene farlo in parallelo, errori frequenti.</p></div></div>
+        <div class="item"><span class="num">08</span><div><h4>Dialoghi con i progettisti.</h4><p>Interviste interne. Mostra le persone, non solo le poltrone.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. OUTPUT FINALE ============ -->
+  <section>
+    <div class="section-head">
+      <div class="idx">08</div>
+      <h2>Output<br>operativo.</h2>
+      <div class="kicker">Le priorità, gli errori da evitare, la roadmap in cinque fasi.</div>
+    </div>
+
+    <div class="eyebrow" style="margin-bottom: 16px;">Priorità del redesign</div>
+    <div class="priorities">
+      <div class="pri">
+        <div class="lvl"><span class="small">Priorità 1 — non negoziabile</span>1.</div>
+        <h4>Identità, showroom, conversione locale.</h4>
+        <ul>
+          <li>Hero, manifesto, pagine ambiente principali.</li>
+          <li>Schede showroom complete con mappa + appuntamento.</li>
+          <li>Form contatti con scelta showroom, WhatsApp visibile.</li>
+          <li>Brand visivo coerente con direzione "Casa Mediterranea".</li>
+        </ul>
+      </div>
+      <div class="pri">
+        <div class="lvl"><span class="small">Priorità 2 — entro lancio</span>2.</div>
+        <h4>Progetti realizzati, brand, servizi.</h4>
+        <ul>
+          <li>8–12 progetti reali con case study completo.</li>
+          <li>Pagina servizi articolata, non riassuntiva.</li>
+          <li>Pagina brand partner curata, con criterio dichiarato.</li>
+          <li>Testimonianze in homepage e dentro le pagine ambiente.</li>
+        </ul>
+      </div>
+      <div class="pri">
+        <div class="lvl"><span class="small">Priorità 3 — fase 2</span>3.</div>
+        <h4>Magazine, geo-landing, automazioni.</h4>
+        <ul>
+          <li>Magazine editoriale con primi 8 articoli evergreen.</li>
+          <li>Landing geo per cucine / arredamento + città.</li>
+          <li>Newsletter di progetto (mensile, editoriale).</li>
+          <li>Integrazione CRM + tracking conversioni.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px;">
+      <div class="eyebrow" style="margin-bottom: 8px;">Errori da evitare</div>
+      <div class="errors">
+        <div class="err"><span class="x">✕</span><div><h4>Trasformare il sito in un catalogo prodotti.</h4><p>Toglie il differenziatore principale (la consulenza) e mette in competizione con i marketplace.</p></div></div>
+        <div class="err"><span class="x">✕</span><div><h4>Usare foto stock o render generici.</h4><p>Bruciano la credibilità costruita in cinquant'anni. Meglio meno foto, ma vere.</p></div></div>
+        <div class="err"><span class="x">✕</span><div><h4>Mettere prezzi senza progetto.</h4><p>Si finisce per attrarre richieste sbagliate. I prezzi vanno dichiarati a sopralluogo eseguito.</p></div></div>
+        <div class="err"><span class="x">✕</span><div><h4>Riempire la home di slider che cambiano da soli.</h4><p>Distraggono, peggiorano la SEO, fanno apparire il sito vecchio.</p></div></div>
+        <div class="err"><span class="x">✕</span><div><h4>Trattare i due showroom come uno solo.</h4><p>Sono due luoghi diversi, due bacini d'utenza diversi, due URL diverse. Geo-SEO vive di questo.</p></div></div>
+        <div class="err"><span class="x">✕</span><div><h4>Loghi dei brand grandi in home.</h4><p>Sposta l'attenzione dai produttori al rivenditore. Si torna al concetto "scelgo Idealmobili", non "scelgo brand X".</p></div></div>
+        <div class="err"><span class="x">✕</span><div><h4>Tono pubblicitario "tutto compreso, paghi in 10 rate".</h4><p>Erode immediatamente la percezione di fascia medio-alta. Il finanziamento esiste ma si nomina nei servizi, non in home.</p></div></div>
+        <div class="err"><span class="x">✕</span><div><h4>Lanciare con contenuti incompleti.</h4><p>Meglio rimandare 4 settimane che pubblicare un sito con pagine "in costruzione" o foto provvisorie.</p></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px;">
+      <div class="eyebrow" style="margin-bottom: 16px;">Roadmap in cinque fasi</div>
+      <div class="roadmap">
+        <div class="roadmap-head">
+          <div>Fase 1 <span class="week">Sett. 1–4</span></div>
+          <div>Fase 2 <span class="week">Sett. 4–6</span></div>
+          <div>Fase 3 <span class="week">Sett. 5–8</span></div>
+          <div>Fase 4 <span class="week">Sett. 7–11</span></div>
+          <div>Fase 5 <span class="week">Sett. 10–14</span></div>
+        </div>
+        <div class="roadmap-body">
+          <div class="phase">
+            <h4>Raccolta materiali.</h4>
+            <ul>
+              <li>Briefing approfondito con titolari.</li>
+              <li>Audit del sito attuale + competitor.</li>
+              <li>Brief al fotografo: showroom + 4 progetti reali.</li>
+              <li>Selezione 8–12 progetti realizzati.</li>
+              <li>Raccolta logo brand, recensioni, numeri.</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <h4>Architettura.</h4>
+            <ul>
+              <li>Sitemap definitiva approvata.</li>
+              <li>Wireframe a bassa fedeltà di tutte le pagine.</li>
+              <li>Definizione struttura URL e SEO.</li>
+              <li>Definizione flusso "prenota appuntamento".</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <h4>Copy.</h4>
+            <ul>
+              <li>Tono di voce documentato.</li>
+              <li>Manifesto, storia, schede ambiente.</li>
+              <li>Microcopy form, email transazionali.</li>
+              <li>Testi SEO-aware delle pagine pilastro.</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <h4>Design.</h4>
+            <ul>
+              <li>Sistema visivo "Casa Mediterranea".</li>
+              <li>Design hi-fi della home + 2 ambienti tipo.</li>
+              <li>Design di scheda progetto, showroom, contatti.</li>
+              <li>Componenti riusabili + design mobile.</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <h4>Sviluppo &amp; lancio.</h4>
+            <ul>
+              <li>CMS configurato, contenuti caricati.</li>
+              <li>Integrazione form, WhatsApp, GBP.</li>
+              <li>SEO tecnica, performance, accessibilità.</li>
+              <li>Soft launch + raccolta feedback.</li>
+              <li>Lancio pubblico + comunicazione.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 12px;">Totale indicativo · 14 settimane lavorative · le fasi si sovrappongono di proposito</p>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING ============ -->
+  <div class="closing">
+    <p>
+      Un sito non racconta una storia.<br>
+      <em>Le storie sono nei progetti.</em><br>
+      Il sito serve a portare le persone<br>
+      dentro lo showroom giusto, al<br>
+      momento giusto.
+    </p>
+    <div class="sig">
+      <div>Fine del documento</div>
+      <div><strong>Idealmobili &amp; Sfera Design</strong></div>
+      <div>Maggio 2026 · v.01</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
